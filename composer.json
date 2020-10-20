@@ -1,0 +1,10 @@
+{
+    "name": "pbp/mini-web-apps",
+    "description": "Projek Web Dinamis Blog untuk memenuhi tugas PBP",
+    "type": "project",
+    "license": "GPL",
+    "require": {},
+    "scripts": {
+        "server": "php -S localhost:8000"
+    }
+}
