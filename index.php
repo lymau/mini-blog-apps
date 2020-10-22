@@ -16,11 +16,17 @@ if (isset($_SESSION['penulis'])) {
 </head>
 
 <body>
-    <h1 class="h1">Cek apakah berhasil</h1>
     <div class="jumbotron jumbotron-fluid">
-        <span>Indonesia</span>
+            <br>
+            <h1 class="text-center" style="color: #1c2b2d);">Selamat Datang!</h1>
+            <br>
+            <p class="text-center" style="color: #1c2b2d;">Anda dapat mencari banyak referensi dari berbagai penulis disini <br> selain itu, anda juga dapat membagikan tulisan kalian kepada orang orang!</p>  
+            <div class="text-center">
+                <p><a class="btn btn-outline-dark" href="#" role="button">Sign In</a></p>
+                <p><small>tidak punya akun?<a href="#">Sign Up</a>  atau  <a href="#">Masuk sebagai tamu</a></small></p>
+            </div>
+            <br>
     </div>
-
     <div class="container">
         <div class="row">
             <?php if (isset($_SESSION['penulis'])) : ?>
