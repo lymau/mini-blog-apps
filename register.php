@@ -1,10 +1,23 @@
 <?php
+require_once 'functions/db_login.php';
 include_once 'template/header.html';
+
+// Cek apakah tombol submit sudah ditekan
+if (isset($_POST['register'])) {
+	if (registrasi($_POST) > 0) {
+		echo "<script>
+				alert('User baru berhasil ditambahkan');
+			</script>";
+	} else {
+		echo mysqli_error($conn);
+	}
+}
+
 ?>
 <!-- Style CSS -->
 <link rel="stylesheet" href="assets/css/style.css">
 <!-- Page Title -->
-<title>Daftar</title>
+<title>Daftar Sebagai Penulis</title>
 </head>
 
 <body>
@@ -22,70 +35,47 @@ include_once 'template/header.html';
 						<h4 class="card-title mt-2">Sign up</h4>
 					</header>
 					<article class="card-body">
-						<form>
-							<div class="form-row">
-								<div class="col form-group">
-									<label>First name </label>
-									<input type="text" class="form-control" placeholder="">
-								</div>
-								<!-- form-group end.// -->
-								<div class="col form-group">
-									<label>Last name</label>
-									<input type="text" class="form-control" placeholder=" ">
-								</div>
-								<!-- form-group end.// -->
-							</div>
-							<!-- form-row end.// -->
+						<form action="" method="POST">
+							<!-- Nama -->
 							<div class="form-group">
-								<label>Email address</label>
-								<input type="email" class="form-control" placeholder="">
-								<small class="form-text text-muted">We'll never share your email with anyone else.</small>
+								<label for="nama">Nama</label>
+								<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" maxlength="50" required>
 							</div>
-							<!-- form-group end.// -->
+							<!-- Email -->
 							<div class="form-group">
-								<label class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender" value="option1">
-									<span class="form-check-label"> Male </span>
-								</label>
-								<label class="form-check form-check-inline">
-									<input class="form-check-input" type="radio" name="gender" value="option2">
-									<span class="form-check-label"> Female</span>
-								</label>
+								<label for="email">Email</label>
+								<input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" maxlength="50" required>
+								<small class="form-text text-muted">Kita tidak akan membagikan email Anda dengan orang lain.</small>
 							</div>
-							<!-- form-group end.// -->
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label>City</label>
-									<input type="text" class="form-control">
-								</div>
-								<!-- form-group end.// -->
-								<div class="form-group col-md-6">
-									<label>Province</label>
-									<select id="inputState" class="form-control">
-										<option selected=""> Choose...</option>
-										<option>jawa Tengah</option>
-										<option>Jawa Barat</option>
-										<option>Jawa TImur</option>
-										<option>Jakarta</option>
-										<option>Yogyakarta</option>
-									</select>
-								</div>
-								<!-- form-group end.// -->
-							</div>
+							<!-- Alamat -->
 							<div class="form-group">
-								<label>Address</label>
-								<input type="text" class="form-control" placeholder="">
+								<label for="alamat">Alamat</label>
+								<textarea class="form-control" id="alamat" name="alamat" rows="5" required></textarea>
 							</div>
-							<!-- form-row.// -->
+							<!-- Kota -->
 							<div class="form-group">
-								<label>Create password</label>
-								<input class="form-control" type="password">
-							</div> <!-- form-group end.// -->
-							<div class="form-group">
-								<button type="submit" class="btn btn-primary btn-block"> Register </button>
+								<label for="kota">Kota</label>
+								<input class="form-control" type="text" id="kota" name="kota" placeholder="Masukkan kota" maxlength="30" required>
 							</div>
-							<!-- form-group// -->
-							<small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
+							<!-- No telepon -->
+							<div class="form-group">
+								<label for="no_telp">Nomor Telepon (12 digit)</label>
+								<input class="form-control" type="text" id="no_telp" name="no_telp" placeholder="Ex: 081234567890" maxlength="12" required>
+							</div>
+							<!-- Password -->
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input class="form-control" type="password" id="password" name="password" placeholder="Masukkan password" required>
+							</div>
+							<!-- Verifikasi Password -->
+							<div class="form-group">
+								<label for="password2">Verifikasi Password</label>
+								<input class="form-control" type="password" id="password2" name="password2" placeholder="Masukkan password sekali lagi" required>
+							</div>
+							<!-- Tombol Register -->
+							<div class="form-group">
+								<button type="submit" name="register" id="register" class="btn btn-primary btn-block">Register</button>
+							</div>
 						</form>
 					</article>
 					<!-- card-body end .// -->
