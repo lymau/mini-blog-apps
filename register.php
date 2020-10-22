@@ -2,12 +2,13 @@
 require_once 'functions/db_login.php';
 include_once 'template/header.html';
 
-// Cek apakah tombol submit sudah ditekan
+// Cek apakah tombol register sudah ditekan
 if (isset($_POST['register'])) {
 	if (registrasi($_POST) > 0) {
 		echo "<script>
 				alert('User baru berhasil ditambahkan');
 			</script>";
+		header('Location: login.php');
 	} else {
 		echo mysqli_error($conn);
 	}
@@ -31,7 +32,7 @@ if (isset($_POST['register'])) {
 			<div class="col-md-6">
 				<div class="card">
 					<header class="card-header">
-						<a href="" class="float-right btn btn-outline-primary mt-1">Log in</a>
+						<a href="login_penulis.php" class="float-right btn btn-outline-primary mt-1">Log in</a>
 						<h4 class="card-title mt-2">Sign up</h4>
 					</header>
 					<article class="card-body">

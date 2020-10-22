@@ -62,7 +62,7 @@ function registrasi($data)
     $result = mysqli_query($conn, " SELECT email FROM penulis WHERE email = '$email' ");
     if (mysqli_fetch_assoc($result)) { //jika ada
         echo "<script>
-                alert('Username sudah ada');
+                alert('Email sudah ada');
             </script>";
         return false;
     }
