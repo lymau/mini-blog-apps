@@ -8,7 +8,10 @@ include_once 'template/header.html'
 </head>
 <body>
 <h1 class="h1">Cek apakah berhasil</h1>
-
+<div class="jumbotron jumbotron-fluid">
+    <span>Indonesia</span>
+    <button class="btn btn-primary">Hey</button>
+</div>
 <?php 
 include_once 'template/footer.html';
 ?>
