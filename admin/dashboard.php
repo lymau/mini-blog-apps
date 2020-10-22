@@ -4,6 +4,10 @@ require '../functions/db_login.php';
 include_once '../template/header.html'
 
 ?>
+<!-- Style CSS -->
+<link rel="stylesheet" href="../assets/css/style.css">
+<!-- Page Title -->
+<title>Daftar</title>
 <title>Header</title>
 </head>
 <body>
