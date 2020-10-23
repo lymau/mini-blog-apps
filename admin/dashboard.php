@@ -1,23 +1,41 @@
-<?php
+<!-- File : dashboard.php
+    Deskripsi : halaman dashboard admin -->
 
+<?php
+session_start();
 require '../functions/db_login.php';
-include_once '../template/header.html'
+
+// Kalo belum login tendang
+if (!isset($_SESSION['admin'])){
+    header('Location: ../index.php');
+    exit;
+}
+
+include_once '../template/meta.html'
 
 ?>
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
 <!-- Page Title -->
-<title>Daftar</title>
-<title>Header</title>
+<title>Dashboard</title>
 </head>
-<body>
-<!-- Tampilan mulai dari sini -->
-<h1 class="h1">Dashboard Admin</h1>
-<h2 class="h2">Selamat datang, Admin!</h2>
-<a href="../logout.php" class="btn btn-danger">Logout</a>
+<?php include '../template/header.html' ?>
+<!-- Jika sudah login sebagai penulis -->
+<?php if (isset($_SESSION['admin'])) { ?>
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item">
+            <a href="#" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a href="../logout.php" class="btn btn-danger" style="margin-left: .5em" role="button"><span class="fas fa-sign-in-alt"></span>Logout</a>
+        </li>
+    </ul>
+    </div>
+    </nav>
+<?php } ?>
 
 <!-- Isi Dashboard Admin -->
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-sm-6">
             <div class="card">
