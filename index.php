@@ -108,8 +108,15 @@ include_once 'template/meta.html';
             </nav>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
 
 <?php
 include_once 'template/footer.html';
 ?>
+=======
+
+<?php
+    include_once 'template/footer.html';
+   ?>
+>>>>>>> c8a8bf628a3ca5069eacdf070507c4a28f071858

@@ -3,9 +3,13 @@
 #Deskripsi  : Konfirmasi sebelum delete customer
 
 require_once '../functions/db_login.php';
-include_once '../template/header.html';
 include_once '../template/meta.html';
+?>
+</head>
+<?php include '../template/header.html' ?>
+</nav>
 
+<?php
 $id = $_GET['id'];
 #asign query
 $query = " SELECT * FROM kategori WHERE idkategori=".$id." ";
@@ -21,6 +25,8 @@ $row = $result->fetch_object();
 <link rel="stylesheet" href="../assets/css/style.css">
 <br>
 <div class="container">
+<div class="row justify-content-center">
+<div class="col-md-6">
 <div class="card">
 <div class="card-header">Confirm Delete Category</div>
 <div class="card-body">
@@ -40,6 +46,8 @@ $row = $result->fetch_object();
     <p>Are you sure want to delete this item?</p>
     <a class="btn btn-danger" href="delete_kategori.php?id=<?php echo $id; ?>">Yes</a>
     <a class="btn btn-primary" href="view_kategori.php">No</a><br><br>
+</div>
+</div>
 </div>
 </div>
 </div>

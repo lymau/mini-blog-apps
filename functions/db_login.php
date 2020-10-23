@@ -16,8 +16,7 @@ if (!$conn) {
 // echo "Connection was established successfully";
 
 // Test data
-function test_input($data)
-{
+function test_input($data){
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
@@ -25,14 +24,12 @@ function test_input($data)
 }
 
 // fungsi untuk validasi no telp
-function validate_phone($no_telp)
-{
+function validate_phone($no_telp){
     return preg_match('/^[0-9]{12}+$/', $no_telp);
 }
 
 // Fungsi untuk registrasi
-function registrasi($data)
-{
+function registrasi($data){
     global $conn;
 
     // ambil data yang dikirimkan dari method post
@@ -86,8 +83,7 @@ function registrasi($data)
 }
 
 
-function echo_length($x, $length)
-{
+function echo_length($x, $length){
     if (strlen($x) <= $length) {
         echo $x;
     } else {
@@ -96,6 +92,3 @@ function echo_length($x, $length)
     }
 }
 
-function komentar(){
-    
-}

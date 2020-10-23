@@ -3,9 +3,13 @@
 //Deskripsi	: menampilkan form edit data kategori dan mengupdate data ke database
 
 require_once '../functions/db_login.php';
-include_once '../template/header.html';
 include_once '../template/meta.html';
+?>
+</head>
+<?php include '../template/header.html' ?>
+</nav>
 
+<?php
 $id = $_GET['id'];
 
 //mengecek apakah user belum menekan tombol submit
@@ -57,6 +61,8 @@ else{
 <link rel="stylesheet" href="../assets/css/style.css">
 <br>
 <div class="container">
+	<div class="row justify-content-center">
+	<div class="col-md-10">
 	<div class="card">
 		<div class="card-header">Edit Category</div>
 		<div class="card-body">
@@ -71,6 +77,8 @@ else{
 				<a href="view_kategori.php" class="btn btn-secondary">Cancel</a>
 			</form>
 		</div>
+	</div>
+	</div>
 	</div>
 </div>
 <?php include('../template/footer.html') ?>
