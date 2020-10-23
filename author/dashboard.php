@@ -13,7 +13,7 @@ if (!isset($_SESSION['penulis'])) {
 //ambil idpenulis
 $email = $_SESSION['penulis'];
 $result = mysqli_query($conn, "SELECT * FROM penulis where email = '$email'");
-if (mysqli_num_rows($result)){
+if (mysqli_num_rows($result) === 1){
     $row = mysqli_fetch_assoc($result);
     $id = $row['idpenulis'];
 }

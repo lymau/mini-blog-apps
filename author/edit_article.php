@@ -1,5 +1,5 @@
-<!-- File : write_article.php
-    Deskripsi : halaman ketika user menulis post -->
+<!-- File : edit_article.php
+    Deskripsi : halaman untuk mengedit artikel -->
 <?php
 session_start();
 require '../functions/db_login.php';
@@ -19,7 +19,7 @@ $idpenulis = $row['idpenulis'];
 
 
 // Kelola input dari CKEditor
-if (isset($_POST['publish'])){
+if (isset($_POST['edit'])){
     $valid = true;
     $judul = test_input($_POST['judul']);
     $idkategori = test_input($_POST['kategori']);
@@ -31,20 +31,32 @@ if (isset($_POST['publish'])){
         $errIsiPost = 'isi tidak boleh kosong';
         $valid = false;
     }
-
+    if (isset($_GET)){
+        $idpost = $_GET['idpost'];
+    }
     // Jika valid
     if ($valid){
         // query
-        $query = " INSERT INTO post (idpost, judul, idkategori, isipost, file_gambar, tgl_insert, tgl_update, idpenulis) VALUES (NULL, '$judul', $idkategori, '$isipost', NULL, DEFAULT, NULL, $idpenulis)";
+        $query = " UPDATE post SET judul = '$judul', idkategori = $idkategori, isipost = '$isipost', tgl_update = DEFAULT WHERE idpost = $idpost ";
         // execute
         $result = $conn->query($query);
         if (!$result){
             die ('Could not query the database: <br>'.$conn->error.'<br>');
         } else {
-            header('Location: dashboard.php');
+            header('Location: view_article.php');
         }
     }
 }
+
+// ambil idpost jika mau diedit
+if (isset($_GET)){
+    $idpost = $_GET['idpost'];
+    //ambil data post terkait by id
+    $result = mysqli_query($conn, "SELECT * FROM post WHERE idpost = $idpost");
+    $row = mysqli_fetch_assoc($result);
+}
+
+
 
 include '../template/meta.html';
 ?>
@@ -60,7 +72,7 @@ include '../template/meta.html';
 <?php if (isset($_SESSION['penulis'])) { ?>
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
+            <a href="#" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
         </li>
         <li class="nav-item">
             <a href="../logout.php" class="btn btn-danger" style="margin-left: .5em" role="button"><span class="fas fa-sign-in-alt"></span>Logout</a>
@@ -85,7 +97,7 @@ include '../template/meta.html';
                     <form action="" method="POST">
                         <div class="form-group">
                             <label for="judul">Judul</label>
-                            <input type="text" class="form-control" id="judul" name="judul" maxlength="255" required>
+                            <input type="text" class="form-control" id="judul" name="judul" maxlength="255" value="<?php if(isset($_GET)){ echo $row['judul'];}?>" required>
                         </div>
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
@@ -103,10 +115,20 @@ include '../template/meta.html';
                             </select>
                         </div>
                         <div class="form-group">
+                            <?php 
+                            if (isset($_GET)){
+                                $idpost = $_GET['idpost'];
+                                //ambil data post terkait by id
+                                $result = mysqli_query($conn, "SELECT * FROM post WHERE idpost = $idpost");
+                                $row = mysqli_fetch_assoc($result);
+                            }
+                            ?>
                             <label for="isi">Isi Post</label>
-                            <textarea class="form-control" id="isi" rows="10" name="isi"></textarea>
+                            <textarea class="form-control" id="isi" rows="10" name="isi">
+                                <?php if(isset($_GET)){ echo $row['isipost'];}?>"
+                            </textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" name="publish">Publish</button>
+                        <button type="submit" class="btn btn-primary" name="edit">Edit</button>
                     </form>
                 </div>
             </div>
