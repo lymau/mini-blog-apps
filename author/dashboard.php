@@ -1,28 +1,35 @@
 <?php
-require_once '../functions/db_login.php';
-require_once '../functions/function_login.php';
-include_once '../functions/functions.php';
-include_once '../template/meta.html';
+session_start();
+require '../functions/db_login.php';
 
-if (!isset($_SESSION['penulis'])){
+if (!isset($_SESSION['penulis'])) {
     header('Location: ../index.php');
     exit;
 }
-
+include '../template/meta.html';
 ?>
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
 <!-- Page Title -->
 <title>Dashboard Penulis</title>
 </head>
-<body>
-<!-- Tampilan mulai dari sini -->
-<h1 class="h1">Dashboard Penulis</h1>
-<h2 class="h2">Selamat datang, <?= $_SESSION ?> </h2>
-<a href="../logout.php" class="btn btn-danger">Logout</a>
+<?php include '../template/header.html' ?>
+<!-- Jika sudah login sebagai penulis -->
+<?php if (isset($_SESSION['penulis'])) { ?>
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item">
+            <a href="author/dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a href="logout.php" class="btn btn-danger" style="margin-left: .5em" role="button"><span class="fas fa-sign-in-alt"></span>Logout</a>
+        </li>
+    </ul>
+    </div>
+    </nav>
+<?php } ?>
 
 <!-- Isi Dashboard Admin -->
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-sm-6">
             <div class="card">

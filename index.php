@@ -1,10 +1,18 @@
 <?php
 session_start();
-require_once 'functions/db_login.php';
+require 'functions/db_login.php';
 
+// //tangkap idpenulis
+// $email = $_SESSION['penulis'];
 
+// //jalankan query untuk menangkap informasi tentang penulis
+// $result = mysqli_query($conn, "SELECT * FROM penulis WHERE email = '$email'");
+// if (mysqli_num_rows($result) === 1){
+//     $row = mysqli_fetch_assoc($result);
+//     $id = $row['idpenulis'];
+// }
 
-include_once 'template/meta.html';
+include 'template/meta.html';
 
 ?>
 <!-- Style CSS -->
@@ -108,5 +116,5 @@ include_once 'template/meta.html';
         </div>
     </div>
     <?php
-    include_once 'template/footer.html';
+    include 'template/footer.html';
     ?>
