@@ -3,17 +3,16 @@
 #Deskripsi  : melihat list kategori yang ada di database
 
 require_once '../functions/db_login.php';
-include_once '../template/header.html';
 include_once '../template/meta.html';
 
+
 ?>
+</head>
+
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
 <br>
-<section id="tabel">
 <div class="container">
-<div class="row">
-<div class="col-md-8">
 	<div class="card">
 		<div class="card-header">Category Data</div>
 		<div class="class-body">
@@ -57,7 +56,5 @@ include_once '../template/meta.html';
 		</div>
 	</div>
 </div>
-</div>
-</div>
-</section>
+
 <?php include('../template/footer.html') ?>
