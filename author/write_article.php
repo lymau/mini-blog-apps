@@ -6,31 +6,22 @@ if (!isset($_SESSION['penulis'])) {
     header('Location: ../index.php');
     exit;
 }
-
-//ambil idpenulis
-$email = $_SESSION['penulis'];
-$result = mysqli_query($conn, "SELECT * FROM penulis where email = '$email'");
-if (mysqli_num_rows($result)){
-    $row = mysqli_fetch_assoc($result);
-    $id = $row['idpenulis'];
-}
-
 include '../template/meta.html';
 ?>
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
 <!-- Page Title -->
-<title>Dashboard Penulis</title>
+<title>Tulis Artikel</title>
 </head>
 <?php include '../template/header.html' ?>
 <!-- Jika sudah login sebagai penulis -->
 <?php if (isset($_SESSION['penulis'])) { ?>
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="author/dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
+            <a href="dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
         </li>
         <li class="nav-item">
-            <a href="logout.php" class="btn btn-danger" style="margin-left: .5em" role="button"><span class="fas fa-sign-in-alt"></span>Logout</a>
+            <a href="../logout.php" class="btn btn-danger" style="margin-left: .5em" role="button"><span class="fas fa-sign-in-alt"></span>Logout</a>
         </li>
     </ul>
     </div>
@@ -44,7 +35,7 @@ include '../template/meta.html';
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">
-                        <a href="write_article.php?id=<?=$id?>">Buat Artikel</a>
+                        <a href="#">Buat Artikel</a>
                     </h5>
                 </div>
             </div>
@@ -53,7 +44,7 @@ include '../template/meta.html';
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">
-                        <a href="view_article.php?id=<?=$id?>">List Artikel</a>
+                        <a href="#">List Artikel</a>
                     </h5>
                 </div>
             </div>

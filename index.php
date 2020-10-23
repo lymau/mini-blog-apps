@@ -77,7 +77,7 @@ include 'template/meta.html';
         $result = mysqli_query($conn, "SELECT * FROM post LIMIT $awaldata,$dataperhalaman");
         $data = mysqli_num_rows($result);
         $halaman = ceil($data / $dataperhalaman);
-        $post = mysqli_query($conn, "SELECT * FROM mahasiswac LIMIT $awaldata, $dataperhalaman");
+        $post = mysqli_query($conn, "SELECT * FROM mahasiswa LIMIT $awaldata, $dataperhalaman");
         ?>
         <div class="row justify-content-center">
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
