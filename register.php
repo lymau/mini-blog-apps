@@ -1,6 +1,8 @@
 <?php
 require_once 'functions/db_login.php';
-include_once 'template/header.html';
+require_once 'functions/function_login.php';
+include_once 'functions/functions.php';
+include_once 'template/meta.html';
 
 // Cek apakah tombol register sudah ditekan
 if (isset($_POST['register'])) {
@@ -25,7 +27,7 @@ if (isset($_POST['register'])) {
 	<div class="container">
 		<br>
 		<p>
-			<h2 style="text-align: center; color:#3488d1;">ONE STEP CLOSER TO US</h2>
+			<h2 style="text-align: center; color:#3488d1;">BERGABUNG BERSAMA KAMI DAN JADILAH PENULIS</h2>
 		</p>
 		<hr>
 		<div class="row justify-content-center">

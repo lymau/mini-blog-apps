@@ -1,6 +1,8 @@
 <?php
+require_once 'functions/db_login.php';
 require_once 'functions/function_login.php';
-include_once 'template/header.html';
+include_once 'functions/functions.php';
+include_once 'template/meta.html';
 
 //cek cookie 
 if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
@@ -48,11 +50,15 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 
 <body>
     <div class="container">
-        <div class="row"><p><br></p></div>
+        <div class="row">
+            <p><br></p>
+        </div>
         <div class="row justify-content-center">
             <h1 class="h1">Form Login</h1>
         </div>
-        <div class="row"><p> </p></div>
+        <div class="row">
+            <p> </p>
+        </div>
         <div class="row justify-content-center">
             <!-- Form untuk Login -->
             <div class="card">
@@ -76,7 +82,11 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                                 Remember Me!
                             </label>
                         </div>
-                        <button type="submit" name="login" class="btn btn-primary">Login</button>
+                        <!-- Button Login -->
+                        <br>
+                        <div class="form-group">
+                            <button type="submit" name="login" id="login" class="btn btn-primary btn-block">Login</button>
+                        </div>
                     </form>
                 </div>
             </div>
