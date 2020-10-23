@@ -76,10 +76,10 @@ include 'template/meta.html';
             $aktif = 1;
         }
         $awaldata = ($dataperhalaman * $aktif) - $dataperhalaman;
+        $raw = mysqli_query($conn, "SELECT * FROM post");
         $result = mysqli_query($conn, "SELECT * FROM post LIMIT $awaldata,$dataperhalaman");
-        $data = mysqli_num_rows($result);
-        $halaman = ceil($data / $dataperhalaman);
-        $post = mysqli_query($conn, "SELECT * FROM mahasiswa LIMIT $awaldata, $dataperhalaman");
+        $data = mysqli_num_rows($raw);
+        $halaman = ($data/$dataperhalaman);
         ?>
         <div class="row justify-content-center">
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
@@ -105,13 +105,13 @@ include 'template/meta.html';
             <div class="col">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
-                        <?php for ($i = 1; $i <= $halaman; $i++) :
+                        <?php for ($i = 1; $i <= $halaman; $i++):
                             if ($i == $aktif) : ?>
                                 <li class="page-item active"><a class="page-link" href="?halaman=<?php echo $i ?> "><?php echo $i; ?></a></li>
                             <?php else : ?>
                                 <li class="page-item"><a class="page-link" href="?halaman=<?php echo $i ?> "><?php echo $i; ?></a></li>
-                        <?php endif;
-                        endfor; ?>
+                        <?php endif; ?>
+                        <?php endfor; ?>
                     </ul>
                 </nav>
             </div>

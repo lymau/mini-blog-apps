@@ -36,10 +36,20 @@ include_once 'template/meta.html';
     <?php } ?>
 <div class="container">
     <?php 
-        $result = mysqli_query($conn, "SELECT * FROM post ORDER BY tgl_insert DESC");
+        $dataperhalaman = 5;
+        if (isset($_GET["halaman"])) {
+            $aktif = $_GET["halaman"];
+        } else {
+            $aktif = 1;
+        }
+        $awaldata = ($dataperhalaman * $aktif) - $dataperhalaman;        
+        $result = mysqli_query($conn, "SELECT * FROM post ORDER BY tgl_insert DESC LIMIT $awaldata, $dataperhalaman");
+        $raw = mysqli_query($conn, "SELECT * FROM post");
+        $data = mysqli_num_rows($raw);
+        $halaman = ceil($data / $dataperhalaman);
         while($post = mysqli_fetch_assoc($result)):
     ?>
-    <br><br>
+    <br>
     <div class="card">
         <div class="card-body">
             <h5 class="card-title"><?= $post["judul"] ?></h5>
@@ -71,7 +81,19 @@ include_once 'template/meta.html';
                 <?php endwhile;?>
         </div>
     </div>
+    <br>
         <?php endwhile; ?>
+        <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <?php for ($i = 1; $i <= $halaman; $i++) :
+                            if ($i == $aktif) : ?>
+                                <li class="page-item active"><a class="page-link" href="?halaman=<?php echo $i ?> "><?php echo $i; ?></a></li>
+                            <?php else : ?>
+                                <li class="page-item"><a class="page-link" href="?halaman=<?php echo $i ?> "><?php echo $i; ?></a></li>
+                        <?php endif;
+                        endfor; ?>
+                    </ul>
+                </nav>
 </div>
  
 
