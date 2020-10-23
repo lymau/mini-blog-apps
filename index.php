@@ -1,10 +1,7 @@
 <?php
 session_start();
-<<<<<<< HEAD
-require_once 'functions/db_login.php';
-include_once 'template/meta.html';
-=======
 require 'functions/db_login.php';
+include_once 'template/meta.html';
 
 // //tangkap idpenulis
 // $email = $_SESSION['penulis'];
@@ -18,7 +15,6 @@ require 'functions/db_login.php';
 
 include 'template/meta.html';
 
->>>>>>> 4373e0849b74f1c491c6e24ef2dc0f1f618f4aae
 ?>
 
 <!-- Style CSS -->
@@ -121,13 +117,7 @@ include 'template/meta.html';
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 
 <?php
     include_once 'template/footer.html';
    ?>
-=======
-    <?php
-    include 'template/footer.html';
-    ?>
->>>>>>> 4373e0849b74f1c491c6e24ef2dc0f1f618f4aae
