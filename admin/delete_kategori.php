@@ -4,6 +4,7 @@
 
 require_once '../functions/db_login.php';
 include_once '../template/header.html';
+include_once '../template/meta.html';
 
 $id = $_GET['id'];
 #assign query

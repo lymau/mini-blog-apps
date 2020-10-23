@@ -4,6 +4,7 @@
 
 require_once '../functions/db_login.php';
 include_once '../template/header.html';
+include_once '../template/meta.html';
 
 if (isset($_POST["submit"])) {
     $valid = TRUE;
