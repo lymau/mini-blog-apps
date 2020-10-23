@@ -34,7 +34,7 @@ Pengerjaan:
 - Aplikasi di-hosting ke internet, boleh menggunakan free web hosting.
 - File program dan basis data ditaruh dalam satu folder, di-zip.
 - Pembuatan aplikasi boleh menggunakan native PHP atau framework.
-- Deadline: 18 Oktober 2020 pukul 23:59. 
+- Deadline: Sunday, 25 October 2020, 11:59 PM
 
 Yang dikirim (ditulis dalam notepad, diupload di kulon):
 - Nama dan nim setiap anggota
