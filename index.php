@@ -47,10 +47,7 @@ if (isset($_SESSION['penulis'])) {
         </div>
         <div class="row"><p><br></p></div>
         <?php 
-            $result = mysqli_query($conn, "SELECT * FROM post"); 
             $dataperhalaman = 3;
-            $data = mysqli_num_rows($result); 
-            $halaman = ceil($data / $dataperhalaman);
             if(isset($_GET["halaman"])){
                 $aktif = $_GET["halaman"];
             }
@@ -58,11 +55,14 @@ if (isset($_SESSION['penulis'])) {
                 $aktif = 1; 
             }
             $awaldata = ($dataperhalaman * $aktif) - $dataperhalaman;
+            $result = mysqli_query($conn, "SELECT * FROM post LIMIT $awaldata,$dataperhalaman"); 
+            $data = mysqli_num_rows($result);
+            $halaman = ceil($data / $dataperhalaman);            
             $post = mysqli_query($conn, "SELECT * FROM mahasiswac LIMIT $awaldata, $dataperhalaman");
         ?>
-        <div class="row">
+        <div class="row justify-content-center">
             <?php while( $row = mysqli_fetch_assoc($result) ):?>
-            <div class="col">
+            <div class="col-auto">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title"><?= $row["judul"] ?></h5>

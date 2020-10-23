@@ -48,10 +48,12 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
 
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row"><p><br></p></div>
+        <div class="row justify-content-center">
             <h1 class="h1">Form Login</h1>
         </div>
-        <div class="row">
+        <div class="row"><p> </p></div>
+        <div class="row justify-content-center">
             <!-- Form untuk Login -->
             <div class="card">
                 <div class="card-body">
