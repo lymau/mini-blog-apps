@@ -2,22 +2,29 @@
 #File       : view_kategori.php
 #Deskripsi  : melihat list kategori yang ada di database
 
+session_start();
 require_once '../functions/db_login.php';
 include_once '../template/meta.html';
 
-
 ?>
-</head>
 
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+<?php include '../template/header.html' ?>
+</nav>
+<body>
 <br>
 <div class="container">
+    <div class="row justify-content-center">
+	<div class="col-md-10">
 	<div class="card">
 		<div class="card-header">Category Data</div>
 		<div class="class-body">
 		<br>
 		<a class="btn btn-primary" href="add_kategori.php">+ Add Category</a><br><br>
+		
 			<table class="table table-striped">
 				<tr>
 					<th>No</th>
@@ -54,6 +61,8 @@ include_once '../template/meta.html';
 				<br>
 			</table>
 		</div>
+	</div>
+	</div>
 	</div>
 </div>
 

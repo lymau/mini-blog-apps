@@ -1,3 +1,6 @@
+<!-- File : dashboard.php
+    Deskripsi : halaman dashboard penulis -->
+
 <?php
 session_start();
 require '../functions/db_login.php';
@@ -27,10 +30,10 @@ include '../template/meta.html';
 <?php if (isset($_SESSION['penulis'])) { ?>
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="author/dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
+            <a href="#" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
         </li>
         <li class="nav-item">
-            <a href="logout.php" class="btn btn-danger" style="margin-left: .5em" role="button"><span class="fas fa-sign-in-alt"></span>Logout</a>
+            <a href="../logout.php" class="btn btn-danger" style="margin-left: .5em" role="button"><span class="fas fa-sign-in-alt"></span>Logout</a>
         </li>
     </ul>
     </div>
@@ -44,7 +47,7 @@ include '../template/meta.html';
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">
-                        <a href="write_article.php?id=<?=$id?>">Buat Artikel</a>
+                        <a href="write_article.php">Buat Artikel</a>
                     </h5>
                 </div>
             </div>
@@ -53,7 +56,7 @@ include '../template/meta.html';
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">
-                        <a href="view_article.php?id=<?=$id?>">List Artikel</a>
+                        <a href="view_article.php">List Artikel</a>
                     </h5>
                 </div>
             </div>
