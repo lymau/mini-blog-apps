@@ -2,20 +2,25 @@
 #File       : view_penulis.php
 #Deskripsi  : melihat list penulis yang ada di database
 
+session_start();
 require_once '../functions/db_login.php';
-include_once '../template/header.html';
 include_once '../template/meta.html';
 
 ?>
+
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
+
+</head>
+<?php include '../template/header.html' ?>
+</nav>
+<body>
 <br>
 <div class="container">
 	<div class="card">
 		<div class="card-header">Author Data</div>
 		<div class="class-body">
 		<br>
-		<a class="btn btn-primary" href="add_penulis.php">+ Add Author</a><br><br>
 			<table class="table table-striped">
 				<tr>
 					<th>No</th>
@@ -44,8 +49,7 @@ include_once '../template/meta.html';
 					echo '<td>'.$row->kota.'</td>';
 					echo '<td>'.$row->email.'</td>';
 					echo '<td>'.$row->no_telp.'</td>';
-					echo '<td><a class="btn btn-warning btn-sm" href="edit_penulis.php?id='.$row->idpenulis.'">Edit</a>&nbsp;&nbsp;
-						<a class="btn btn-danger btn-sm" href="confirm_delete_penulis.php?id='.$row->idpenulis.'">Delete<a/>
+					echo '<td><a class="btn btn-danger btn-sm" href="reset_password.php?id='.$row->idpenulis.'">Reset Password</a>
 						</td>';
 					echo '</tr>';
 					$i++;
@@ -62,4 +66,5 @@ include_once '../template/meta.html';
 		</div>
 	</div>
 </div>
+
 <?php include('../template/footer.html') ?>
