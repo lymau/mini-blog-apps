@@ -1,3 +1,6 @@
+<!-- File : index.php
+    Deskripsi : halaman utama ketika blog pertama kali dibuka! -->
+
 <?php
 session_start();
 require 'functions/db_login.php';
@@ -33,6 +36,7 @@ include 'template/meta.html';
         </ul>
         </div>
         </nav>
+        <!-- Jika Belum Login -->
     <?php } else { ?>
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
@@ -45,6 +49,7 @@ include 'template/meta.html';
         </div>
         </nav>
     <?php } ?>
+    <!-- Jumbotron -->
     <div class="jumbotron jumbotron-fluid">
         <br>
         <h1 class="text-center" style="color: #1c2b2d;">Selamat Datang!</h1>

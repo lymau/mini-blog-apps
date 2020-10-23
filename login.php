@@ -1,3 +1,6 @@
+<!-- File : login.php
+    Deskripsi : halaman login untuk user dan admin -->
+
 <?php
 session_start();
 require 'functions/db_login.php';

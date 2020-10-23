@@ -1,3 +1,6 @@
+<!-- File : register.php
+	Deskripsi : halaman untuk registrasi penulis -->
+
 <?php
 require 'functions/db_login.php';
 
