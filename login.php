@@ -60,7 +60,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Masukkan email">
-                            <small id="emailHelp" class="form-text text-muted">Kita tidak akan membagikan email Anda dengan orang lain.</small>
+                            <small id="emailHelp" class="form-text text-muted">Kita tidak akan membagikan email Anda pada orang lain.</small>
                         </div>
                         <!-- Password -->
                         <div class="form-group">
