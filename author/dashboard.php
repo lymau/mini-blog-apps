@@ -1,18 +1,13 @@
 <?php
-session_start();
-require '../functions/db_login.php';
-include_once '../template/header.html';
+require_once '../functions/db_login.php';
+require_once '../functions/function_login.php';
+include_once '../functions/functions.php';
+include_once '../template/meta.html';
 
 if (!isset($_SESSION['penulis'])){
     header('Location: ../index.php');
     exit;
 }
-
-//ambil data tentang penulis
-$id = $_GET['id'];
-$result = mysqli_query($conn, "SELECT * FROM penulis WHERE id = $id");
-$row = mysqli_fetch_assoc($result);
-var_dump($row);
 
 ?>
 <!-- Style CSS -->
