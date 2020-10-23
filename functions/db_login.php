@@ -95,3 +95,7 @@ function echo_length($x, $length)
         echo $y;
     }
 }
+
+function komentar(){
+    
+}
