@@ -93,5 +93,6 @@ function echo_length($x, $length){
 }
 
 function search($key){
+    global $conn;
     return mysqli_query($conn, "SELECT * FROM post WHERE judul LIKE '%$key%'");
 }
