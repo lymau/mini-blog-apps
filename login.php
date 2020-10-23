@@ -1,7 +1,5 @@
 <?php
-session_start();
-
-require 'functions/db_login.php';
+require_once 'functions/function_login.php';
 include_once 'template/header.html';
 
 //cek cookie 
@@ -10,48 +8,36 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     $key = $_COOKIE['key'];
 
     //ambil email berdasarkan id
-    $result = mysqli_query($conn, "SELECT email FROM penulis WHERE id = $id");
-    $row = mysqli_fetch_assoc($result);
+    $result = mysqli_query($conn, "SELECT email FROM penulis WHERE idpenulis = $id");
 
-    //cek cookie dengan email
-    if ($key === hash('sha256', $row['email'])) {
-        $_SESSION['login'] = true;
-    }
-}
-
-// jika masih dalam session
-if (isset($_SESSION['login'])) {
-    header("Location: index.php");
-    exit;
-}
-
-//Cek apakah tombol login sudah ditekan
-if (isset($_POST['login'])) {
-    // ambil data email dan password
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    //simpan dalam query
-    $result = mysqli_query($conn, " SELECT * FROM  penulis WHERE email = '$email' ");
-
-    //cek email
+    // jika data berhasil diambil dari penulis maka
     if (mysqli_num_rows($result) === 1) {
-        // cek password
+        // simpan array asosiatif result di dalam variabel row
         $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $row['password'])) {
-            // set sessionnya
-            $_SESSION['login'] = true;
-            // cek remember me (jika dicentang)
-            if (isset($_POST['remember'])) {
-                //buat cookie
-                setcookie('id', $row['id']);
-                setcookie('key', hash('sha256', $row['username']));
-            }
-            header('Location: index.php');
+        //cek cookie dengan email
+        if ($key === hash('sha256', $row['email'])) {
+            $_SESSION['penulis'] = true;
+        }
+        // jika masih dalam session
+        if (isset($_SESSION['penulis'])) {
+            header("Location: index.php");
             exit;
         }
+    } else { // jika tidak ada di tabel penulis maka cek di tabel admin
+        $result = mysqli_query($conn, " SELECT email FROM admin WHERE idadmin = $id ");
+        if (mysqli_num_rows($result) === 1) {
+            $row = mysqli_fetch_assoc($result);
+            //cek cookie dengan email
+            if ($key === hash('sha256', $row['email'])) {
+                $_SESSION['admin'] = true;
+            }
+            // jika masih dalam session
+            if (isset($_SESSION['admin'])) {
+                header("Location: admin/dashboard.php");
+                exit;
+            }
+        }
     }
-    $error = true;
 }
 
 ?>
@@ -69,7 +55,7 @@ if (isset($_POST['login'])) {
             <!-- Form untuk Login -->
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="functions/function_login.php">
                         <!-- Email -->
                         <div class="form-group">
                             <label for="email">Email address</label>

@@ -14,6 +14,7 @@ include_once '../template/header.html'
 <!-- Tampilan mulai dari sini -->
 <h1 class="h1">Dashboard Admin</h1>
 <h2 class="h2">Selamat datang, Admin!</h2>
+<a href="../logout.php" class="btn btn-danger">Logout</a>
 
 <!-- Isi Dashboard Admin -->
 <div class="container">

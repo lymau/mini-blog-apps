@@ -46,7 +46,7 @@ else{
 		}
 		else{
 			$conn->close();
-			header('Location: view_kategori.php');
+			header('Location: view_kategori2.php');
 		}
 	}
 }
@@ -67,7 +67,7 @@ else{
 				</div>
 				<br>
 				<button type="submit" class="btn btn-primary" name="submit" value="submit">Edit</button>
-				<a href="view_kategori.php" class="btn btn-secondary">Cancel</a>
+				<a href="view_kategori2olahraga.php" class="btn btn-secondary">Cancel</a>
 			</form>
 		</div>
 	</div>
