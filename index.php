@@ -3,6 +3,10 @@
 
 <?php
 session_start();
+<<<<<<< HEAD
+require_once 'functions/db_login.php';
+include_once 'template/meta.html';
+=======
 require 'functions/db_login.php';
 
 // //tangkap idpenulis
@@ -17,7 +21,9 @@ require 'functions/db_login.php';
 
 include 'template/meta.html';
 
+>>>>>>> 4373e0849b74f1c491c6e24ef2dc0f1f618f4aae
 ?>
+
 <!-- Style CSS -->
 <link rel="stylesheet" href="assets/css/style.css">
 <!-- Page Title -->
@@ -95,7 +101,7 @@ include 'template/meta.html';
                             $namapenulis = $penulis["nama"] ?>
                             <h6 class="card-subtitle mb-2 text-muted"><small>By <?= $namapenulis ?>, <?= $row["tgl_insert"] ?><br></small></h6>
                             <p class="card-text"><?php echo_length($row["isipost"], 30); ?>.</p>
-                            <small><a href="#">Baca selengkapnya...</a></small>
+                            <small><a href="singlepost.php?idpost=<?= $row["idpost"] ?>">Baca selengkapnya...</a></small>
                         </div>
                     </div>
                 </div>
@@ -120,6 +126,13 @@ include 'template/meta.html';
             </div>
         </div>
     </div>
+<<<<<<< HEAD
+
+<?php
+    include_once 'template/footer.html';
+   ?>
+=======
     <?php
     include 'template/footer.html';
     ?>
+>>>>>>> 4373e0849b74f1c491c6e24ef2dc0f1f618f4aae
