@@ -1,7 +1,24 @@
 <?php
 session_start();
+<<<<<<< HEAD
 require_once 'functions/db_login.php';
 include_once 'template/meta.html';
+=======
+require 'functions/db_login.php';
+
+// //tangkap idpenulis
+// $email = $_SESSION['penulis'];
+
+// //jalankan query untuk menangkap informasi tentang penulis
+// $result = mysqli_query($conn, "SELECT * FROM penulis WHERE email = '$email'");
+// if (mysqli_num_rows($result) === 1){
+//     $row = mysqli_fetch_assoc($result);
+//     $id = $row['idpenulis'];
+// }
+
+include 'template/meta.html';
+
+>>>>>>> 4373e0849b74f1c491c6e24ef2dc0f1f618f4aae
 ?>
 
 <!-- Style CSS -->
@@ -66,7 +83,7 @@ include_once 'template/meta.html';
         $result = mysqli_query($conn, "SELECT * FROM post LIMIT $awaldata,$dataperhalaman");
         $data = mysqli_num_rows($result);
         $halaman = ceil($data / $dataperhalaman);
-        $post = mysqli_query($conn, "SELECT * FROM mahasiswac LIMIT $awaldata, $dataperhalaman");
+        $post = mysqli_query($conn, "SELECT * FROM mahasiswa LIMIT $awaldata, $dataperhalaman");
         ?>
         <div class="row justify-content-center">
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
@@ -104,7 +121,13 @@ include_once 'template/meta.html';
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
 <?php
     include_once 'template/footer.html';
    ?>
+=======
+    <?php
+    include 'template/footer.html';
+    ?>
+>>>>>>> 4373e0849b74f1c491c6e24ef2dc0f1f618f4aae

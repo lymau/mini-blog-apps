@@ -16,7 +16,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
         $row = mysqli_fetch_assoc($result);
         //cek cookie dengan email
         if ($key === hash('sha256', $row['email'])) {
-            $_SESSION['penulis'] = true;
+            $_SESSION['penulis'] = $row['email'];
         }
         // jika masih dalam session
         if (isset($_SESSION['penulis'])) {
@@ -29,7 +29,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
             $row = mysqli_fetch_assoc($result);
             //cek cookie dengan email
             if ($key === hash('sha256', $row['email'])) {
-                $_SESSION['admin'] = true;
+                $_SESSION['admin'] = $row['email'];
             }
             // jika masih dalam session
             if (isset($_SESSION['admin'])) {
@@ -55,7 +55,7 @@ if (isset($_POST['login'])) {
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row['password'])) {
             // set sessionnya
-            $_SESSION['penulis'] = true;
+            $_SESSION['penulis'] = $row['email'];
             // cek remember me (jika dicentang)
             if (isset($_POST['remember'])) {
                 //buat cookie
@@ -72,7 +72,7 @@ if (isset($_POST['login'])) {
             $row = mysqli_fetch_assoc($result);
             if ($password === $row['password']) {
                 //set sessionnya
-                $_SESSION['admin'] = true;
+                $_SESSION['admin'] = $row['email'];
                 // cek remember me (jika dicentang)
                 if (isset($_POST['remember'])) {
                     //buat cookie
@@ -113,13 +113,13 @@ include 'template/meta.html';
                         <!-- Email -->
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Masukkan email">
+                            <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Masukkan email" required>
                             <small id="emailHelp" class="form-text text-muted">Kita tidak akan membagikan email Anda pada orang lain.</small>
                         </div>
                         <!-- Password -->
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan password" required>
                         </div>
                         <!-- Remember Me -->
                         <div class="form-check">
@@ -133,6 +133,10 @@ include 'template/meta.html';
                         <div class="form-group">
                             <button type="submit" name="login" id="login" class="btn btn-primary btn-block">Login</button>
                         </div>
+                        <!-- Button Register -->
+                        <div class="form-group">
+                            <a href="register.php" class="btn btn-warning btn-block" role="button">Register</a>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -141,5 +145,5 @@ include 'template/meta.html';
 
 
     <?php
-    include_once 'template/footer.html';
+    include 'template/footer.html';
     ?>

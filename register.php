@@ -1,7 +1,5 @@
 <?php
-require_once 'functions/db_login.php';
-require_once 'functions/function_login.php';
-
+require 'functions/db_login.php';
 
 // Cek apakah tombol register sudah ditekan
 if (isset($_POST['register'])) {
@@ -14,7 +12,7 @@ if (isset($_POST['register'])) {
 		echo mysqli_error($conn);
 	}
 }
-include_once 'template/meta.html';
+include 'template/meta.html';
 ?>
 <!-- Style CSS -->
 <link rel="stylesheet" href="assets/css/style.css">
@@ -33,7 +31,6 @@ include_once 'template/meta.html';
 			<div class="col-md-6">
 				<div class="card">
 					<header class="card-header">
-						<a href="login_penulis.php" class="float-right btn btn-outline-primary mt-1">Log in</a>
 						<h4 class="card-title mt-2">Sign up</h4>
 					</header>
 					<article class="card-body">
@@ -81,7 +78,7 @@ include_once 'template/meta.html';
 						</form>
 					</article>
 					<!-- card-body end .// -->
-					<div class="border-top card-body text-center">Have an account? <a href="">Log In</a></div>
+					<div class="border-top card-body text-center">Have an account? <a href="login.php">Log In</a></div>
 				</div>
 				<!-- card.// -->
 			</div>
@@ -92,5 +89,5 @@ include_once 'template/meta.html';
 
 
 	<?php
-	include_once 'template/footer.html';
+	include 'template/footer.html';
 	?>
