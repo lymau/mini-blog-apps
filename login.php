@@ -1,7 +1,6 @@
 <?php
-require_once 'functions/db_login.php';
-require_once 'functions/function_login.php';
-include_once 'template/meta.html';
+session_start();
+require 'functions/db_login.php';
 
 //cek cookie 
 if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
@@ -41,6 +40,54 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     }
 }
 
+//Cek apakah tombol login sudah ditekan
+if (isset($_POST['login'])) {
+    // ambil data email dan password
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    //simpan dalam query
+    $result = mysqli_query($conn, " SELECT * FROM  penulis WHERE email = '$email' ");
+
+    //cek email
+    if (mysqli_num_rows($result) === 1) { //jika ada ditabel penulis
+        // cek password
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row['password'])) {
+            // set sessionnya
+            $_SESSION['penulis'] = true;
+            // cek remember me (jika dicentang)
+            if (isset($_POST['remember'])) {
+                //buat cookie
+                setcookie('id', $row['idpenulis'], time() + (86400 * 30));
+                setcookie('key', hash('sha256', $row['email']), time() + (86400 * 30));
+            }
+            header('Location: index.php');
+            exit;
+        }
+    } else { // cek di tabel admin
+        $result = mysqli_query($conn, " SELECT * FROM admin WHERE email = '$email' ");
+        if (mysqli_num_rows($result) === 1) {
+            // cek password
+            $row = mysqli_fetch_assoc($result);
+            if ($password === $row['password']) {
+                //set sessionnya
+                $_SESSION['admin'] = true;
+                // cek remember me (jika dicentang)
+                if (isset($_POST['remember'])) {
+                    //buat cookie
+                    setcookie('id', $row['idadmin'], time() + (86400 * 30));
+                    setcookie('key', hash('sha256', $row['email']), time() + (86400 * 30));
+                }
+                header('Location: admin/dashboard.php');
+                exit;
+            }
+        }
+    }
+    $error = true;
+}
+
+include 'template/meta.html';
 ?>
 <!-- Style CSS -->
 <link rel="stylesheet" href="assets/css/style.css">
@@ -62,7 +109,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
             <!-- Form untuk Login -->
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="functions/function_login.php">
+                    <form method="POST" action="">
                         <!-- Email -->
                         <div class="form-group">
                             <label for="email">Email address</label>

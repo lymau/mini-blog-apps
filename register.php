@@ -1,8 +1,7 @@
 <?php
 require_once 'functions/db_login.php';
 require_once 'functions/function_login.php';
-include_once 'functions/functions.php';
-include_once 'template/meta.html';
+
 
 // Cek apakah tombol register sudah ditekan
 if (isset($_POST['register'])) {
@@ -15,7 +14,7 @@ if (isset($_POST['register'])) {
 		echo mysqli_error($conn);
 	}
 }
-
+include_once 'template/meta.html';
 ?>
 <!-- Style CSS -->
 <link rel="stylesheet" href="assets/css/style.css">
