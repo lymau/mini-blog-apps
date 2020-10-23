@@ -18,7 +18,7 @@ if (isset($_SESSION['penulis'])) {
 <body>
     <div class="jumbotron jumbotron-fluid">
             <br>
-            <h1 class="text-center" style="color: #1c2b2d);">Selamat Datang!</h1>
+            <h1 class="text-center" style="color: #1c2b2d;">Selamat Datang!</h1>
             <br>
             <p class="text-center" style="color: #1c2b2d;">Anda dapat mencari banyak referensi dari berbagai penulis disini <br> selain itu, anda juga dapat membagikan tulisan kalian kepada orang orang!</p>  
             <div class="text-center">
