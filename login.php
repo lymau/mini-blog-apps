@@ -1,7 +1,6 @@
 <?php
 require_once 'functions/db_login.php';
 require_once 'functions/function_login.php';
-include_once 'functions/functions.php';
 include_once 'template/meta.html';
 
 //cek cookie 

@@ -25,7 +25,8 @@ function test_input($data)
 }
 
 // fungsi untuk validasi no telp
-function validate_phone($no_telp){
+function validate_phone($no_telp)
+{
     return preg_match('/^[0-9]{12}+$/', $no_telp);
 }
 
@@ -44,7 +45,7 @@ function registrasi($data)
     $password2 = mysqli_real_escape_string($conn, $data['password2']);
 
     // cek apakah no_telp sesuai dengan format
-    if (!validate_phone($no_telp)){
+    if (!validate_phone($no_telp)) {
         echo "Nomor telepon tidak valid";
         return false;
     }
@@ -82,4 +83,15 @@ function registrasi($data)
     mysqli_query($conn, " INSERT INTO penulis VALUES ('', '$nama', '$password', '$alamat' ,'$kota', '$email', '$no_telp') ");
 
     return mysqli_affected_rows($conn);
+}
+
+
+function echo_length($x, $length)
+{
+    if (strlen($x) <= $length) {
+        echo $x;
+    } else {
+        $y = substr($x, 0, $length) . '...';
+        echo $y;
+    }
 }
