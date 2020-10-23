@@ -1,12 +1,9 @@
 <?php
 session_start();
 require_once 'functions/db_login.php';
-
-
-
 include_once 'template/meta.html';
-
 ?>
+
 <!-- Style CSS -->
 <link rel="stylesheet" href="assets/css/style.css">
 <!-- Page Title -->
@@ -82,7 +79,7 @@ include_once 'template/meta.html';
                             $namapenulis = $penulis["nama"] ?>
                             <h6 class="card-subtitle mb-2 text-muted"><small>By <?= $namapenulis ?>, <?= $row["tgl_insert"] ?><br></small></h6>
                             <p class="card-text"><?php echo_length($row["isipost"], 30); ?>.</p>
-                            <small><a href="#">Baca selengkapnya...</a></small>
+                            <small><a href="singlepost.php?idpost=<?= $row["idpost"] ?>">Baca selengkapnya...</a></small>
                         </div>
                     </div>
                 </div>
@@ -107,6 +104,7 @@ include_once 'template/meta.html';
             </div>
         </div>
     </div>
-    <?php
+
+<?php
     include_once 'template/footer.html';
-    ?>
+   ?>
