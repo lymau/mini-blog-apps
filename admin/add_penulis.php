@@ -4,6 +4,7 @@
 
 require_once '../functions/db_login.php';
 include_once '../template/header.html';
+include_once '../template/meta.html';
 
 if (isset($_POST["submit"])) {
     $valid = TRUE;
@@ -68,11 +69,11 @@ if (isset($_POST["submit"])) {
 <br>
 <div class="container">
     <div class=card>
-        <div class="card-header">Add Category</div>
+        <div class="card-header">Add Author</div>
         <div class="card-body">
             <form method="POST" autocomplete="on" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div class="form-group">
-                    <label for="nama">Author Name</label>
+                    <label for="nama">Author's Name</label>
                     <input type="text" class="form-control" id="nama" name="nama">
                     <div class="error"><?php if (isset($error_name)) echo $error_name; ?></div>
                 </div>
@@ -92,9 +93,14 @@ if (isset($_POST["submit"])) {
                     <div class="error"><?php if (isset($error_email)) echo $error_email; ?></div>
                 </div>
 				<div class="form-group">
-                    <label for="nama">Phone Number</label>
-                    <input type="text" class="form-control" id="nama" name="nama">
-                    <div class="error"><?php if (isset($error_name)) echo $error_name; ?></div>
+                    <label for="no_telp">Phone Number</label>
+                    <input type="text" class="form-control" id="no_telp" name="no_telp">
+                    <div class="error"><?php if (isset($error_numphone)) echo $error_numphone; ?></div>
+                </div>
+				<div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" id="password" name="password">
+                    <div class="error"><?php if (isset($error_password)) echo $error_password; ?></div>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary" name="submit" value="submit">Add</button>
