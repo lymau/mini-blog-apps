@@ -3,9 +3,13 @@
 #Deskripsi  : menambahkan kategori baru ke database
 
 require_once '../functions/db_login.php';
-include_once '../template/header.html';
 include_once '../template/meta.html';
+?>
+</head>
+<?php include '../template/header.html' ?>
+</nav>
 
+<?php
 if (isset($_POST["submit"])) {
     $valid = TRUE;
     $nama = test_input($_POST['nama']);
@@ -40,6 +44,8 @@ if (isset($_POST["submit"])) {
 <link rel="stylesheet" href="../assets/css/style.css">
 <br>
 <div class="container">
+	<div class="row justify-content-center">
+	<div class="col-md-10">
 	<div class=card>
 		<div class="card-header">Add Category</div>
 		<div class="card-body">
@@ -54,6 +60,8 @@ if (isset($_POST["submit"])) {
 				<a href="view_kategori.php" class="btn btn-secondary">Cancel</a>
 			</form>
 		</div>
+	</div>
+	</div>
 	</div>
 </div>
 <?php include('../template/footer.html') ?>
