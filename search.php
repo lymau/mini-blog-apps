@@ -10,7 +10,7 @@ include 'template/meta.html';
 <!-- Style CSS -->
 <link rel="stylesheet" href="assets/css/style.css">
 <!-- Page Title -->
-<title>Mini Blog Apps</title>
+<title>Cari Artikels</title>
 </head>
 <?php include 'template/header.html'?>
     <!-- Jika sudah login sebagai penulis -->

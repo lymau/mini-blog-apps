@@ -24,7 +24,7 @@ if (isset($_POST['delete'])) {
     }
 }
 
-include_once '../template/meta.html';
+include_once 'template/meta.html';
 ?>
 <!-- Isi -->
 <!-- Style CSS -->
@@ -32,7 +32,7 @@ include_once '../template/meta.html';
 <!-- Page Title -->
 <title>Confirm Delete Post</title>
 </head>
-<?php include '../template/header.html' ?>
+<?php include 'template/header.html' ?>
 <!-- Jika sudah login sebagai penulis -->
 <?php if (isset($_SESSION['penulis'])) { ?>
     <ul class="nav navbar-nav ml-auto">
@@ -73,6 +73,15 @@ include_once '../template/meta.html';
     </div>
 </div>
 <!-- Footer -->
-<?php
-include_once '../template/footer.html';
-?>
+<!-- Jquery and Popper JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+</html>
