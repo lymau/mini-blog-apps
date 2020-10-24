@@ -82,7 +82,20 @@ function registrasi($data){
     return mysqli_affected_rows($conn);
 }
 
-
+function login($data)
+{
+    $email = test_input($data['email']);
+    $password = test_input($data['password']);
+    $sql_login = mysqli_query($koneksi,"SELECT * FROM tb_user WHERE username = '$user' AND password = '$password'") or die (mysqli_error($con));
+    if (mysqli_num_rows($sql_login) > 0)
+    {
+        echo "berhasil login";
+    } 
+    else
+    {
+        echo "maaf username/password anda salah";
+    }
+}
 function echo_length($x, $length){
     if (strlen($x) <= $length) {
         echo $x;
