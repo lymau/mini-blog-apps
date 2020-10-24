@@ -33,17 +33,34 @@ include_once 'template/meta.html';
         </ul>
         </div>
         </nav>
-    <?php } ?>
+    <?php } 
+    $dataperhalaman = 5;
+    if (isset($_GET["halaman"])) {
+        $aktif = $_GET["halaman"];
+    } else {
+        $aktif = 1;
+    }
+    $awaldata = ($dataperhalaman * $aktif) - $dataperhalaman; 
+    $kategori = mysqli_query($conn, "SELECT * FROM kategori");
+    $result = mysqli_query($conn, "SELECT * FROM post ORDER BY tgl_insert DESC LIMIT $awaldata, $dataperhalaman");
+    ?>
 <div class="container">
-    <?php 
-        $dataperhalaman = 5;
-        if (isset($_GET["halaman"])) {
-            $aktif = $_GET["halaman"];
-        } else {
-            $aktif = 1;
-        }
-        $awaldata = ($dataperhalaman * $aktif) - $dataperhalaman;        
-        $result = mysqli_query($conn, "SELECT * FROM post ORDER BY tgl_insert DESC LIMIT $awaldata, $dataperhalaman");
+        <br>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Kategori
+        </button>
+        <div class="dropdown-menu" aria-labelledby="Pilih Kategori">
+            <?php while($list = mysqli_fetch_assoc($kategori)): ?>
+            <a class="dropdown-item" href="?kategori=<?=$list["idkategori"]?>"><?=$list["nama"]?></a>
+            <?php endwhile; ?>
+        </div>
+    </div>
+    <?php   
+        if (isset($_GET["kategori"])) {
+            $idkategori = $_GET["kategori"];
+            $result = mysqli_query($conn, "SELECT * FROM post WHERE idkategori=$idkategori ORDER BY tgl_insert DESC");
+        }     
         $raw = mysqli_query($conn, "SELECT * FROM post");
         $data = mysqli_num_rows($raw);
         $halaman = ceil($data / $dataperhalaman);
