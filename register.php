@@ -62,7 +62,7 @@ include 'template/meta.html';
 							<!-- No telepon -->
 							<div class="form-group">
 								<label for="no_telp">Nomor Telepon (12 digit)</label>
-								<input class="form-control" type="text" id="no_telp" name="no_telp" placeholder="Ex: 081234567890" maxlength="12" required>
+								<input class="form-control" type="tel" id="no_telp" name="no_telp" placeholder="Ex: 081234567890" maxlength="15" required>
 							</div>
 							<!-- Password -->
 							<div class="form-group">
