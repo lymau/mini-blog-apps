@@ -41,7 +41,7 @@ include_once '../template/meta.html'
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">
-                        <a href="#">Artikel</a>
+                        <a href="rekapposting.php">Artikel</a>
                     </h5>
                 </div>
             </div>
@@ -70,7 +70,7 @@ include_once '../template/meta.html'
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">
-                        <a href="#">Pengaturan</a>
+                        <a href="edit_profile.php">Pengaturan</a>
                     </h5>
                 </div>
             </div>
