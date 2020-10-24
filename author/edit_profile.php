@@ -19,7 +19,8 @@ if (isset($_POST['edit'])) {
     $kota = test_input($_POST['kota']);
     $alamat = test_input($_POST['alamat']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
+    $password2 = mysqli_real_escape_string($conn, $_POST['password2']);    
+    $email1 = $_SESSION['penulis'];
 
     // cek apakah no_telp sesuai dengan format
     if (!validate_phone($no_telp)) {
@@ -37,13 +38,16 @@ if (isset($_POST['edit'])) {
     }
 
     // cek apakah email sudah ada atau belum
-    $result = mysqli_query($conn, " SELECT email FROM penulis WHERE email = '$email' ");
-    if (mysqli_fetch_assoc($result)) { //jika ada
-        echo "<script>
-                    alert('Email sudah ada');
-                </script>";
-        $valid = false;
+    if($email != $email1){
+        $result = mysqli_query($conn, " SELECT email FROM penulis WHERE email = '$email' ");
+        if (mysqli_num_rows($result)) { //jika ada
+            echo "<script>
+                        alert('Email sudah ada');
+                    </script>";
+            $valid = false;
+        }
     }
+    
 
     // Cek password apakah sama dengan password verfikasi atau tidak
     if ($password !== $password2) {
@@ -55,10 +59,10 @@ if (isset($_POST['edit'])) {
 
     if ($valid) {
         // enkripsi password
-        $password = password_hash($password, PASSWORD_DEFAULT);
+        $password1 = password_hash($password, PASSWORD_DEFAULT);
 
         // tambahkan user baru ke database
-        mysqli_query($conn, " INSERT INTO penulis VALUES ('', '$nama', '$password', '$alamat' ,'$kota', '$email', '$no_telp') ");
+        mysqli_query($conn, " UPDATE penulis SET nama='$nama', password='$password1', alamat='$alamat' , kota='$kota', email='$email', no_telp='$no_telp' WHERE email='$email1' ");
     } else {
         echo "Gagal mengubah profile!";
     }
