@@ -56,54 +56,6 @@ include_once 'template/meta.html';
         <div class="col">
             <h2 class="text-center">Beberapa unggahan penulis</h2>
         </div>
-<<<<<<< HEAD
-        <?php
-        $dataperhalaman = 3;
-        if (isset($_GET["halaman"])) {
-            $aktif = $_GET["halaman"];
-        } else {
-            $aktif = 1;
-        }
-        $awaldata = ($dataperhalaman * $aktif) - $dataperhalaman;
-        $raw = mysqli_query($conn, "SELECT * FROM post");
-        $result = mysqli_query($conn, "SELECT * FROM post LIMIT $awaldata,$dataperhalaman");
-        $data = mysqli_num_rows($raw);
-        $halaman = ($data/$dataperhalaman);
-        ?>
-        <div class="row justify-content-center">
-            <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                <div class="col-auto">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $row["judul"] ?></h5>
-                            <?php $idpenulis = $row["idpenulis"];
-                            $penulis = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama FROM penulis WHERE idpenulis=$idpenulis"));
-                            $namapenulis = $penulis["nama"] ?>
-                            <h6 class="card-subtitle mb-2 text-muted"><small>By <?= $namapenulis ?>, <?= $row["tgl_insert"] ?><br></small></h6>
-                            <p class="card-text"><?php echo_length($row["isipost"], 30); ?>.</p>
-                            <small><a href="singlepost.php?idpost=<?= $row["idpost"] ?>">Baca selengkapnya...</a></small>
-                        </div>
-                    </div>
-                </div>
-            <?php endwhile; ?>
-        </div>
-        <div class="row">
-            <p> </p>
-        </div>
-        <div class="row">
-            <div class="col">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <?php for ($i = 1; $i <= $halaman; $i++):
-                            if ($i == $aktif) : ?>
-                                <li class="page-item active"><a class="page-link" href="?halaman=<?php echo $i ?> "><?php echo $i; ?></a></li>
-                            <?php else : ?>
-                                <li class="page-item"><a class="page-link" href="?halaman=<?php echo $i ?> "><?php echo $i; ?></a></li>
-                        <?php endif; ?>
-                        <?php endfor; ?>
-                    </ul>
-                </nav>
-=======
     </div>
     <div class="row">
         <p><br></p>
@@ -135,7 +87,6 @@ include_once 'template/meta.html';
                         <small><a href="singlepost.php?idpost=<?= $row["idpost"] ?>">Baca selengkapnya...</a></small>
                     </div>
                 </div>
->>>>>>> b702416587d3f2a91634d5af3408cac26892fa17
             </div>
         <?php endwhile; ?>
     </div>
@@ -157,15 +108,7 @@ include_once 'template/meta.html';
             </nav>
         </div>
     </div>
-<<<<<<< HEAD
-</div>
-
-<?php
-include_once 'template/footer.html';
-?>
-=======
 
 <?php
     include_once 'template/footer.html';
    ?>
->>>>>>> c8a8bf628a3ca5069eacdf070507c4a28f071858
