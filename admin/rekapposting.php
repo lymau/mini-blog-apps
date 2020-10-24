@@ -19,7 +19,7 @@ include_once '../template/meta.html';
 <!-- Page Title -->
 <title>Rekap Posting</title>
 </head>
-<?php include '../template/header.html' ?>
+<?php include 'template/header.html' ?>
 <!-- Jika sudah login sebagai penulis -->
 <?php if (isset($_SESSION['admin'])) { ?>
     <ul class="nav navbar-nav ml-auto">

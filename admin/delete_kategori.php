@@ -24,6 +24,4 @@ if (!$result) {
 }
 #close db connection
 $conn->close();
-
-include_once '../template/header.html';
-include_once '../template/meta.html';
+?>
