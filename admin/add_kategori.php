@@ -1,10 +1,14 @@
 <?php
 #File       : add_kategori.php
 #Deskripsi  : menambahkan kategori baru ke database
-
+session_start();
 require_once '../functions/db_login.php';
-include_once '../template/header.html';
-include_once '../template/meta.html';
+
+// Kalo belum login tendang
+if (!isset($_SESSION['admin'])){
+    header('Location: ../index.php');
+    exit;
+}
 
 if (isset($_POST["submit"])) {
     $valid = TRUE;
@@ -35,11 +39,32 @@ if (isset($_POST["submit"])) {
         $conn->close();
     }
 }
+
+include_once '../template/meta.html'
+
 ?>
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
-<br>
-<div class="container">
+<!-- Page Title -->
+<title>Add Kategori</title>
+</head>
+<?php include '../template/header.html' ?>
+<!-- Jika sudah login sebagai penulis -->
+<?php if (isset($_SESSION['admin'])) { ?>
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item">
+            <a href="dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a href="../logout.php" class="btn btn-danger" style="margin-left: .5em" role="button"><span class="fas fa-sign-in-alt"></span>Logout</a>
+        </li>
+    </ul>
+    </div>
+    </nav>
+<?php } ?>
+<div class="container mt-5">
+	<div class="row justify-content-center">
+	<div class="col-md-10">
 	<div class=card>
 		<div class="card-header">Add Category</div>
 		<div class="card-body">
@@ -54,6 +79,8 @@ if (isset($_POST["submit"])) {
 				<a href="view_kategori.php" class="btn btn-secondary">Cancel</a>
 			</form>
 		</div>
+	</div>
+	</div>
 	</div>
 </div>
 <?php include('../template/footer.html') ?>

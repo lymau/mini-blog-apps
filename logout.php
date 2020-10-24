@@ -1,3 +1,6 @@
+<!-- File : logout.php
+    Deskripsi : halaman untuk logout -->
+
 <?php 
 
 session_start();
