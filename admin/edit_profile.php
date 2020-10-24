@@ -6,6 +6,7 @@ session_start();
 require '../functions/db_login.php';
 
 if (!isset($_SESSION['admin'])) {
+
     header('Location: ../index.php');
     exit;
 }
@@ -15,10 +16,19 @@ if (isset($_POST['edit'])){
     $nama = test_input($_POST['nama']);
     $email = test_input($_POST['email']);
     $password = test_input($_POST['password']);
-    $password2 = test_input($_POST['password']); 
+    $password2 = test_input($_POST['password2']);
+    if($password == $password2){
+        $email1 = $_SESSION['admin'];
+        $query = mysqli_query($conn,"UPDATE admin SET nama='$nama', email='$email', password=$password2 WHERE email='$email1'");
+    }else{
+        echo "<script>
+                alert('konfirmasi password tidak sama!');
+            </script>";
+    }
+    }
 
 
-}
+
 
 //ambil info tentang admin
 $email = $_SESSION['admin'];
