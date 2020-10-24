@@ -51,9 +51,14 @@ include_once 'template/meta.html';
             Kategori
         </button>
         <div class="dropdown-menu" aria-labelledby="Pilih Kategori">
+            <a class="dropdown-item" href="recentpost.php">Semua</a>
             <?php while($list = mysqli_fetch_assoc($kategori)): ?>
-            <a class="dropdown-item" href="?kategori=<?=$list["idkategori"]?>"><?=$list["nama"]?></a>
-            <?php endwhile; ?>
+            <a class="dropdown-item" href="?kategori=<?=$list["idkategori"]?>&halaman=<?=$aktif?>"><?=$list["nama"]?></a>
+            <?php endwhile; 
+            if (isset($_GET["halaman"])) {
+                $kategoriterpilih = $_GET["kategori"];
+            }
+             ?>
         </div>
     </div>
     <?php   
@@ -104,9 +109,9 @@ include_once 'template/meta.html';
                     <ul class="pagination justify-content-center">
                         <?php for ($i = 1; $i <= $halaman; $i++) :
                             if ($i == $aktif) : ?>
-                                <li class="page-item active"><a class="page-link" href="?halaman=<?php echo $i ?> "><?php echo $i; ?></a></li>
+                                <li class="page-item active"><a class="page-link" href="?kategori=<?=$kategoriterpilih?>&halaman=<?php echo $i ?>"><?php echo $i; ?></a></li>
                             <?php else : ?>
-                                <li class="page-item"><a class="page-link" href="?halaman=<?php echo $i ?> "><?php echo $i; ?></a></li>
+                                <li class="page-item"><a class="page-link" href="?kategori=<?=$kategoriterpilih?>&halaman=<?php echo $i ?>"><?php echo $i; ?></a></li>
                         <?php endif;
                         endfor; ?>
                     </ul>
