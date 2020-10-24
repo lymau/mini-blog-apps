@@ -2,10 +2,36 @@
 session_start();
 require_once 'functions/db_login.php';
 
-if (isset($_POST['addComment'])){
-    $valid = true;
-
+// jika masuk tanpa idpost tendang
+if (!isset($_GET['idpost'])) {
+    header('Location: index.php');
 }
+
+$idpost = $_GET['idpost'];
+if (isset($_SESSION['penulis'])) {
+    // ambil data penulis
+    $email = $_SESSION['penulis'];
+    $query = "SELECT * FROM penulis WHERE email = '$email'";
+    $result = $conn->query($query);
+    if (!$result) {
+        die("Could not query the database: <br>" . $db->error . '<br>Query: ' . $query);
+    }
+    $row = $result->fetch_object();
+    $idpenulis = $row->idpenulis;
+    if (isset($_POST['komentar'])) {
+        $valid = true;
+        $isiKomentar = test_input($_POST['isiKomentar']);
+        $isiKomentar = $conn->real_escape_string($isiKomentar);
+        $query = " INSERT INTO komentar VALUES (NULL, $idpost, $idpenulis, '$isiKomentar', DEFAULT) ";
+        $result = $conn->query($query);
+        if (!$result) {
+            die("Could not query the database: <br>" . $db->error . '<br>Query: ' . $query);
+        } else {
+            echo "<script>alert('Komentar Anda berhasil ditambahkan');</script>";
+        }
+    }
+}
+
 
 include_once 'template/meta.html';
 ?>
@@ -66,7 +92,7 @@ include_once 'template/meta.html';
                         <h7 class="card-text"><?= $penulis["nama"] ?></h7>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col">
                         <p class="card-text"><small><?= $row["isi"] ?></small></p>
                     </div>
@@ -74,6 +100,51 @@ include_once 'template/meta.html';
             <?php endwhile; ?>
         </div>
     </div>
+    <!-- Form Komentar -->
+    <?php
+    if (isset($_SESSION['penulis'])) {
+        // ambil data penulis
+        $email = $_SESSION['penulis'];
+        $query = "SELECT * FROM penulis WHERE email = '$email'";
+        $result = $conn->query($query);
+        if (!$result) {
+            die("Could not query the database: <br>" . $db->error . '<br>Query: ' . $query);
+        }
+        $row = $result->fetch_object();
+        $idpenulis = $row->idpenulis;
+        $nama = $row->nama;
+    }
+    ?>
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="h5">Tambahkan Komentar <?php if (isset($nama)) {
+                                                            echo 'sebagai ' . $nama;
+                                                        } ?></h5>
+                </div>
+                <div class="card-body">
+                    <!-- jika sudah login sebagai penulis maka dapat memberi komentar -->
+                    <?php if (isset($_SESSION['penulis'])) : ?>
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label for="isiKomentar">Komentar</label>
+                                <textarea name="isiKomentar" class="form-control" id="isiKomentar" rows="3"></textarea>
+                            </div>
+                            <button type="submit" name="komentar" class="btn btn-primary">Komentari</button>
+                        </form>
+                        <!-- jika belum login diarahkan untuk mendaftar sebagai penulis -->
+                    <?php else : ?>
+                        <h5 class="h5 justify-content-center">Anda harus <a href="login.php">log in</a> terlebih dahulu untuk dapat berkomentar.</h5>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 </div>
 
 <?php
