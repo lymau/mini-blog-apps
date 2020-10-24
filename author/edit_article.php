@@ -19,29 +19,29 @@ $idpenulis = $row['idpenulis'];
 
 
 // Kelola input dari CKEditor
-if (isset($_POST['edit'])){
+if (isset($_POST['edit'])) {
     $valid = true;
     $judul = test_input($_POST['judul']);
     $idkategori = test_input($_POST['kategori']);
     $isipost = $_POST['isi'];
-    if (empty($judul)){
+    if (empty($judul)) {
         $errJudul = 'Judul dibutuhkan!';
         $valid = false;
-    } elseif (empty($isipost)){
+    } elseif (empty($isipost)) {
         $errIsiPost = 'isi tidak boleh kosong';
         $valid = false;
     }
-    if (isset($_GET)){
+    if (isset($_GET)) {
         $idpost = $_GET['idpost'];
     }
     // Jika valid
-    if ($valid){
+    if ($valid) {
         // query
         $query = " UPDATE post SET judul = '$judul', idkategori = $idkategori, isipost = '$isipost', tgl_update = DEFAULT WHERE idpost = $idpost ";
         // execute
         $result = $conn->query($query);
-        if (!$result){
-            die ('Could not query the database: <br>'.$conn->error.'<br>');
+        if (!$result) {
+            die('Could not query the database: <br>' . $conn->error . '<br>');
         } else {
             header('Location: view_article.php');
         }
@@ -49,7 +49,7 @@ if (isset($_POST['edit'])){
 }
 
 // ambil idpost jika mau diedit
-if (isset($_GET)){
+if (isset($_GET)) {
     $idpost = $_GET['idpost'];
     //ambil data post terkait by id
     $result = mysqli_query($conn, "SELECT * FROM post WHERE idpost = $idpost");
@@ -63,7 +63,7 @@ include '../template/meta.html';
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
 <!-- Page Title -->
-<title>Dashboard Penulis</title>
+<title>Edit Artikel</title>
 <!-- CK EDITOR -->
 <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 </head>
@@ -72,7 +72,7 @@ include '../template/meta.html';
 <?php if (isset($_SESSION['penulis'])) { ?>
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item">
-            <a href="#" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
+            <a href="dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
         </li>
         <li class="nav-item">
             <a href="../logout.php" class="btn btn-danger" style="margin-left: .5em" role="button"><span class="fas fa-sign-in-alt"></span>Logout</a>
@@ -97,26 +97,31 @@ include '../template/meta.html';
                     <form action="" method="POST">
                         <div class="form-group">
                             <label for="judul">Judul</label>
-                            <input type="text" class="form-control" id="judul" name="judul" maxlength="255" value="<?php if(isset($_GET)){ echo $row['judul'];}?>" required>
+                            <input type="text" class="form-control" id="judul" name="judul" maxlength="255" value="<?php if (isset($_GET)) {
+                                                                                                                        echo $row['judul'];
+                                                                                                                    } ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
                             <select class="form-control" id="kategori" name="kategori" required>
                                 <!-- Ambil data kategori -->
-                                <?php 
+                                <?php
+                                $query = "SELECT * FROM kategori ORDER BY idkategori";
+                                $result = $conn->query($query);
+                                if (!$result) {
+                                    die("Could not query the database: <br>" . $db->error . "<br>Query: " . $query);
+                                }
                                 $i = 1;
-                                $result = mysqli_query($conn, "SELECT * FROM kategori");
-                                $row = mysqli_fetch_assoc($result);
                                 ?>
-                                <?php while($i <= mysqli_num_rows($result)): ?>
-                                    <option value="<?=$row['idkategori']; ?>"><?=$row['nama'];?></option>
+                                <?php while ($row = $result->fetch_object()) : ?>
+                                    <option value="<?= $row->idkategori; ?>"><?= $row->nama; ?></option>
                                     <?php $i++; ?>
                                 <?php endwhile; ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <?php 
-                            if (isset($_GET)){
+                            <?php
+                            if (isset($_GET)) {
                                 $idpost = $_GET['idpost'];
                                 //ambil data post terkait by id
                                 $result = mysqli_query($conn, "SELECT * FROM post WHERE idpost = $idpost");
@@ -125,7 +130,9 @@ include '../template/meta.html';
                             ?>
                             <label for="isi">Isi Post</label>
                             <textarea class="form-control" id="isi" rows="10" name="isi">
-                                <?php if(isset($_GET)){ echo $row['isipost'];}?>"
+                                <?php if (isset($_GET)) {
+                                    echo $row['isipost'];
+                                } ?>"
                             </textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" name="edit">Edit</button>

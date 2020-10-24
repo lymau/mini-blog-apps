@@ -1,10 +1,14 @@
 <?php
 #File       : delete_kategori.php
 #Deskripsi  : menghapus kategori berdasarkan id
-
+session_start();
 require_once '../functions/db_login.php';
-include_once '../template/header.html';
-include_once '../template/meta.html';
+
+// Kalo belum login tendang
+if (!isset($_SESSION['admin'])){
+    header('Location: ../index.php');
+    exit;
+}
 
 $id = $_GET['id'];
 #assign query
@@ -19,4 +23,9 @@ if (!$result) {
 }
 #close db connection
 $conn->close();
+
+include_once '../template/header.html';
+include_once '../template/meta.html';
+
+
 ?>

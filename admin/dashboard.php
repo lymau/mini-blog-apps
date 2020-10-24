@@ -50,7 +50,7 @@ include_once '../template/meta.html'
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">
-                        <a href="#">Atur Kategori</a>
+                        <a href="view_kategori.php">Atur Kategori</a>
                     </h5>
                 </div>
             </div>
@@ -61,7 +61,7 @@ include_once '../template/meta.html'
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-center">
-                        <a href="#">Atur Penulis</a>
+                        <a href="view_penulis.php">Atur Penulis</a>
                     </h5>
                 </div>
             </div>

@@ -19,27 +19,27 @@ $idpenulis = $row['idpenulis'];
 
 
 // Kelola input dari CKEditor
-if (isset($_POST['publish'])){
+if (isset($_POST['publish'])) {
     $valid = true;
     $judul = test_input($_POST['judul']);
     $idkategori = test_input($_POST['kategori']);
     $isipost = $_POST['isi'];
-    if (empty($judul)){
+    if (empty($judul)) {
         $errJudul = 'Judul dibutuhkan!';
         $valid = false;
-    } elseif (empty($isipost)){
+    } elseif (empty($isipost)) {
         $errIsiPost = 'isi tidak boleh kosong';
         $valid = false;
     }
 
     // Jika valid
-    if ($valid){
+    if ($valid) {
         // query
         $query = " INSERT INTO post (idpost, judul, idkategori, isipost, file_gambar, tgl_insert, tgl_update, idpenulis) VALUES (NULL, '$judul', $idkategori, '$isipost', NULL, DEFAULT, NULL, $idpenulis)";
         // execute
         $result = $conn->query($query);
-        if (!$result){
-            die ('Could not query the database: <br>'.$conn->error.'<br>');
+        if (!$result) {
+            die('Could not query the database: <br>' . $conn->error . '<br>');
         } else {
             header('Location: dashboard.php');
         }
@@ -51,7 +51,7 @@ include '../template/meta.html';
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
 <!-- Page Title -->
-<title>Dashboard Penulis</title>
+<title>Tulis Artikel</title>
 <!-- CK EDITOR -->
 <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 </head>
@@ -91,13 +91,16 @@ include '../template/meta.html';
                             <label for="kategori">Kategori</label>
                             <select class="form-control" id="kategori" name="kategori" required>
                                 <!-- Ambil data kategori -->
-                                <?php 
+                                <?php
+                                $query = "SELECT * FROM kategori ORDER BY idkategori";
+                                $result = $conn->query($query);
+                                if (!$result) {
+                                    die("Could not query the database: <br>" . $db->error . "<br>Query: " . $query);
+                                }
                                 $i = 1;
-                                $result = mysqli_query($conn, "SELECT * FROM kategori");
-                                $row = mysqli_fetch_assoc($result);
                                 ?>
-                                <?php while($i <= mysqli_num_rows($result)): ?>
-                                    <option value="<?=$row['idkategori']; ?>"><?=$row['nama'];?></option>
+                                <?php while ($row = $result->fetch_object()) : ?>
+                                    <option value="<?= $row->idkategori; ?>"><?= $row->nama; ?></option>
                                     <?php $i++; ?>
                                 <?php endwhile; ?>
                             </select>

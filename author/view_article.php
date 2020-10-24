@@ -25,7 +25,7 @@ include_once '../template/meta.html';
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
 <!-- Page Title -->
-<title>Dashboard Penulis</title>
+<title>View Article</title>
 </head>
 <?php include '../template/header.html' ?>
 <!-- Jika sudah login sebagai penulis -->
@@ -44,7 +44,7 @@ include_once '../template/meta.html';
 <!-- Konten dimulai dari sini -->
 <div class="container mt-5">
     <div class="row">
-        <h3 class="h3">List Artikel Oleh </h3>
+        <h3 class="h3">List Artikel Oleh <?=$row['nama']?> </h3>
     </div>
     <div class="row">
         <div class="col">
@@ -88,7 +88,7 @@ include_once '../template/meta.html';
                             <?php while ($i <= mysqli_num_rows($result)) : ?>
                                 <tr>
                                     <td><?=$i?></td>
-                                    <td><?=$judul?></td>
+                                    <td><a href="../singlepost.php?idpost=<?=$idpost?>"><?=$judul?></a></td>
                                     <td><?=$namakategori?></td>
                                     <td><?=$tglInsert?></td>
                                     <td><?=$tglUpdate?></td>

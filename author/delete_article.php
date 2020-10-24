@@ -30,7 +30,7 @@ include_once '../template/meta.html';
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
 <!-- Page Title -->
-<title>Dashboard Penulis</title>
+<title>Confirm Delete Post</title>
 </head>
 <?php include '../template/header.html' ?>
 <!-- Jika sudah login sebagai penulis -->
