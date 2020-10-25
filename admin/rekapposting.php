@@ -1,34 +1,23 @@
-<?php
-//File		: reset_kategori.php
-//Deskripsi	: mereset password penulis dan mengupdate data ke database
+<!-- File : rekapposting.php
+    Deskripsi : halaman yang berisi informasi rekap posting dalam setiap kategori -->
 
+<?php
 session_start();
 require_once '../functions/db_login.php';
 
-// Kalo belum login tendang
+// jika belum login as admin tendang
 if (!isset($_SESSION['admin'])){
-    header('Location: ../index.php');
+    header("Location: ../index.php");
     exit;
 }
 
-$id = $_GET['id'];
-#asign query
-$query = " SELECT * FROM penulis WHERE idpenulis=".$id." ";
-#execute query
-$result = $conn->query($query);
-if (!$result) {
-    die ("Could not query the database: <br>".$conn->error."<br>Query: ".$query);
-}
-//Fetch and display the results
-$row = $result->fetch_object();
-
-include_once '../template/meta.html'
-
+include_once '../template/meta.html';
 ?>
+
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
 <!-- Page Title -->
-<title>Confirm Reset Password</title>
+<title>Rekap Posting</title>
 </head>
 <?php include 'template/header.html' ?>
 <!-- Jika sudah login sebagai penulis -->
@@ -43,39 +32,36 @@ include_once '../template/meta.html'
     </ul>
     </div>
     </nav>
+    <!-- Jika Belum Login -->
 <?php } ?>
 
-<div class="container mt-5">
-	<div class="row justify-content-center">
-	<div class="col-md-6">
-	<div class="card">
-		<div class="card-header">Confirm Reset Password</div>
-		<div class="card-body">
-			<br>
-			<table class="table table-striped">
-				<tr>
-					<td>ID</td>
-					<td>:</td>
-					<td><?php echo $id; ?></td>
-				</tr>
-				<tr>
-					<td>Name</td>
-					<td>:</td>
-					<td><?php echo $row->nama; ?></td>
-				</tr>
-				<tr>
-					<td>Email</td>
-					<td>:</td>
-					<td><?php echo $row->email; ?></td>
-				</tr>
-			</table>
-			<p>Are you sure want to reset password?</p>
-			<a class="btn btn-danger" href="reset.php?id=<?php echo $id; ?>">Yes</a>
-			<a class="btn btn-primary" href="view_penulis.php">No</a><br><br>
-		</div>
-	</div>
-	</div>
-	</div>
+<br><br>
+<div class="container">
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">No</th>
+        <th scope="col">Kategori</th>
+        <th scope="col">Jumlah Post</th>
+        </tr>
+    </thead>
+    <?php $result = mysqli_query($conn,"SELECT * FROM kategori"); ?>
+    <?php $i = 1; while($kategori = mysqli_fetch_assoc($result)):
+        $idkategori = $kategori["idkategori"];
+        $jumlah = mysqli_num_rows(mysqli_query($conn,"SELECT idpost FROM post WHERE idkategori=$idkategori"));
+        ?>
+    <tbody>
+        <tr>
+        <th scope="row"><?=$i?></th>
+        <td><?=$kategori["nama"] ?></td>
+        <td><?=$jumlah?></td>
+        </tr>
+    <?php 
+        $i++;
+        endwhile;
+    ?>
+    </tbody>
+    </tables>
 </div>
 <!-- Jquery and Popper JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -89,15 +75,3 @@ include_once '../template/meta.html'
     crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

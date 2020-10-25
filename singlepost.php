@@ -7,7 +7,6 @@ if (!isset($_GET['idpost'])) {
     header('Location: index.php');
 }
 
-$idpost = $_GET['idpost'];
 if (isset($_SESSION['penulis'])) {
     // ambil data penulis
     $email = $_SESSION['penulis'];
@@ -22,16 +21,25 @@ if (isset($_SESSION['penulis'])) {
         $valid = true;
         $isiKomentar = test_input($_POST['isiKomentar']);
         $isiKomentar = $conn->real_escape_string($isiKomentar);
-        $query = " INSERT INTO komentar VALUES (NULL, $idpost, $idpenulis, '$isiKomentar', DEFAULT) ";
-        $result = $conn->query($query);
-        if (!$result) {
-            die("Could not query the database: <br>" . $db->error . '<br>Query: ' . $query);
+        if (empty($isiKomentar)) {
+            echo "<script>alert('Komentar tidak boleh kosong!');</script>";
         } else {
-            echo "<script>alert('Komentar Anda berhasil ditambahkan');</script>";
+            $query = " INSERT INTO komentar VALUES (NULL, $idpost, $idpenulis, '$isiKomentar', DEFAULT) ";
+            $result = $conn->query($query);
+            if (!$result) {
+                die("Could not query the database: <br>" . $db->error . '<br>Query: ' . $query);
+            } else {
+                echo "<script>alert('Komentar Anda berhasil ditambahkan');</script>";
+            }
         }
     }
 }
 
+$idpost = $_GET['idpost'];
+$result = mysqli_query($conn, "SELECT * FROM post WHERE idpost = $idpost");
+if (mysqli_num_rows($result) === 1){
+    $row = mysqli_fetch_assoc($result);
+}
 
 include_once 'template/meta.html';
 ?>
@@ -39,7 +47,7 @@ include_once 'template/meta.html';
 <!-- Style CSS -->
 <link rel="stylesheet" href="assets/css/style.css">
 <!-- Page Title -->
-<title>Mini Blog Apps</title>
+<title><?=$row['judul']?></title>
 </head>
 <?php include 'template/header.html' ?>
 <!-- Jika sudah login sebagai penulis -->
@@ -84,8 +92,8 @@ include_once 'template/meta.html';
             <?php
             $comment = mysqli_query($conn, "SELECT * FROM komentar WHERE idpost=$idpost");
             while ($row = mysqli_fetch_assoc($comment)) :
-                $idpenulis = $post["idpenulis"];
-                $penulis = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama FROM penulis WHERE idpenulis=$idpenulis"));
+                $idpekomen = $row['idpenulis'];
+                $penulis = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama FROM penulis WHERE idpenulis=$idpekomen"));
             ?>
                 <div class="row">
                     <div class="col">
@@ -119,9 +127,7 @@ include_once 'template/meta.html';
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="h5">Tambahkan Komentar <?php if (isset($nama)) {
-                                                            echo 'sebagai ' . $nama;
-                                                        } ?></h5>
+                    <h5 class="h5">Tambahkan Komentar</h5>
                 </div>
                 <div class="card-body">
                     <!-- jika sudah login sebagai penulis maka dapat memberi komentar -->

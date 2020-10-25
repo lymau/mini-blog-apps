@@ -16,16 +16,12 @@ $query = " DELETE FROM kategori WHERE idkategori=".$id." ";
 #execute query
 $result = $conn->query($query);
 if (!$result) {
-    die ("Could not query the database: <br>".$conn->error);
+    echo "<script>alert('Tidak bisa menghapus kategori karena ada artikel dengan kategori ini.');</script>";
+    // die ("Could not query the database: <br>".$conn->error);
 }else {
     $conn->close();
     header('Location: view_kategori.php');
 }
 #close db connection
 $conn->close();
-
-include_once '../template/header.html';
-include_once '../template/meta.html';
-
-
 ?>

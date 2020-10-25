@@ -2,7 +2,7 @@
     <section style="height:80px;"></section>
     <footer class="footer-bs" style="background-color: #3488d1 !important;">
         <div class="row">
-            <div class="col-md-5 footer-brand animated fadeInLeft">
+            <div class="col-md-3 footer-brand animated fadeInLeft">
                 <h2>Mini Blog</h2>
                 <p>
                     Blog where the author can post whatever he wants and visitors can comment freely but remember we
@@ -10,11 +10,22 @@
                 </p>
                 <p>© 2020 PBP dynamic web, Diponegoro University</p>
             </div>
-            <div class="col-md-2 footer-nav animated fadeInUp">
-                <h4>About Us</h4>
+            <div class="col-md-4 footer-nav animated fadeInUp">
+                <h4>Menu —</h4>
+                <div class="col-md-6">
+                    <ul class="pages">
+                        <li><a href="#">Recent Post</a></li>
+                        <li><a href="#">Popular Post</a></li>
+                        <li><a href="#">Populer Author</a></li>
+                        <li><a href="#">Detail Post</a></li>
+                    </ul>
+                </div>
                 <div class="col-md-6">
                     <ul class="list">
+                        <li><a href="#">About Us</a></li>
                         <li><a href="#">Contacts</a></li>
+                        <li><a href="#">Terms & Condition</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -30,7 +41,14 @@
                 <h4>POST SEARCH</h4>
                 <p>Search for posts by title</p>
                 <p>
-                    <a type="button" href="../search.php" class="btn btn-outline-light">Search</a>
+                    <!-- /input-group -->
+                <div class="input-group">
+                    <input type="text" class="form-control" name="searchkey" id="searchkey" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button type="submit" name="search" id="search" class="btn btn-default" ><span
+                                class="glyphicon glyphicon-envelope"></span></button>
+                    </span>
+                </div>
                 </p>
             </div>
         </div>

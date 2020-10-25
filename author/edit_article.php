@@ -58,7 +58,7 @@ if (isset($_GET)) {
 
 
 
-include '../template/meta.html';
+include 'template/meta.html';
 ?>
 <!-- Style CSS -->
 <link rel="stylesheet" href="../assets/css/style.css">
@@ -67,7 +67,7 @@ include '../template/meta.html';
 <!-- CK EDITOR -->
 <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 </head>
-<?php include '../template/header.html' ?>
+<?php include 'template/header.html' ?>
 <!-- Jika sudah login sebagai penulis -->
 <?php if (isset($_SESSION['penulis'])) { ?>
     <ul class="nav navbar-nav ml-auto">
