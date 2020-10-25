@@ -42,10 +42,20 @@ include_once 'template/meta.html';
     </nav>
 <?php } ?>
 <!-- Konten dimulai dari sini -->
+<?php
+    $i = 1;
+    // ambil post by penulis
+    $result = mysqli_query($conn, " SELECT * FROM post JOIN kategori ON kategori.idkategori = post.idkategori WHERE idpenulis = $idpenulis");
+    
+    
+?>
+
 <div class="container mt-5">
     <div class="row">
         <h3 class="h3">List Artikel Oleh <?=$row['nama']?> </h3>
     </div>
+    <?php 
+     if (mysqli_num_rows($result)){?>
     <div class="row">
         <div class="col">
             <div class="card mt-5">
@@ -66,12 +76,8 @@ include_once 'template/meta.html';
                         </thead>
                         <tbody>
                             <!-- Isi table mulai dari sini -->
-                            <?php
-                            $i = 1;
-                            // ambil post by penulis
-                            $result = mysqli_query($conn, " SELECT * FROM post JOIN kategori ON kategori.idkategori = post.idkategori WHERE idpenulis = $idpenulis");
-                            if (mysqli_num_rows($result)){
-                                $row = mysqli_fetch_assoc($result);
+                           
+                            <?php while ($row = mysqli_fetch_assoc($result)) :
                                 $idpost = $row['idpost'];
                                 $judul = $row['judul'];
                                 $namakategori = $row['nama'];
@@ -79,13 +85,7 @@ include_once 'template/meta.html';
                                 $tglUpdate = $row['tgl_update'];
                                 if (empty($tglUpdate)){
                                     $tglUpdate = 'Belum pernah diedit';
-                                }
-                            } else {
-                                echo "Belum ada satupun artikel yang ditulis";
-                            }
-                            
-                            ?>
-                            <?php while ($i <= mysqli_num_rows($result)) : ?>
+                                } ?>
                                 <tr>
                                     <td><?=$i?></td>
                                     <td><a href="../singlepost.php?idpost=<?=$idpost?>"><?=$judul?></a></td>
@@ -98,7 +98,10 @@ include_once 'template/meta.html';
                                     </td>
                                 </tr>
                                 <?php $i++; ?>
-                            <?php endwhile; ?>
+                            <?php endwhile; 
+     }else{?>
+        <h3 class="text-muted">Belum ada artikel yang anda tulis</h3>
+    <?php } ?>
                         </tbody>
                     </table>
                 </card>
