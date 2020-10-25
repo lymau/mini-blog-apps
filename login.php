@@ -53,7 +53,7 @@ if (isset($_POST['login'])) {
     $result = mysqli_query($conn, " SELECT * FROM  penulis WHERE email = '$email' ");
 
     //cek email
-    if (mysqli_num_rows($result) === 1) { //jika ada ditabel penulis
+    if (mysqli_num_rows($result) > 0) { //jika ada ditabel penulis
         // cek password
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row['password'])) {
@@ -70,7 +70,7 @@ if (isset($_POST['login'])) {
         }
     } else { // cek di tabel admin
         $result = mysqli_query($conn, " SELECT * FROM admin WHERE email = '$email' ");
-        if (mysqli_num_rows($result) === 1) {
+        if (mysqli_num_rows($result) > 1) {
             // cek password
             $row = mysqli_fetch_assoc($result);
             if ($password === $row['password']) {
