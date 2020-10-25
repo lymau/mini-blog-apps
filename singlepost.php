@@ -7,6 +7,8 @@ if (!isset($_GET['idpost'])) {
     header('Location: index.php');
 }
 
+
+
 if (isset($_SESSION['penulis'])) {
     // ambil data penulis
     $email = $_SESSION['penulis'];
@@ -20,6 +22,7 @@ if (isset($_SESSION['penulis'])) {
     if (isset($_POST['komentar'])) {
         $valid = true;
         $isiKomentar = test_input($_POST['isiKomentar']);
+        $idpost = $_GET['idpost'];
         $isiKomentar = $conn->real_escape_string($isiKomentar);
         if (empty($isiKomentar)) {
             echo "<script>alert('Komentar tidak boleh kosong!');</script>";
@@ -40,6 +43,7 @@ $result = mysqli_query($conn, "SELECT * FROM post WHERE idpost = $idpost");
 if (mysqli_num_rows($result) === 1){
     $row = mysqli_fetch_assoc($result);
 }
+
 
 include_once 'template/meta.html';
 ?>
