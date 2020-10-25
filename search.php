@@ -41,23 +41,21 @@ include 'template/meta.html';
     <div class="container">
         <br><br>
         <form action="" method="POST">
-            <div class="col-auto">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="key" name="key" placeholder="cari..." required>
+            <div class="input-group mb-3">
+                <input type="text" name="key" id="key" class="form-control" placeholder="cari..." aria-label="cari..." aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button type="submit" name="go" id="go" class="btn btn-outline-secondary" type="button">Go</button>
                 </div>
             </div>
-        <div class="row justify-content-center">
-                <div class="col-auto">
-                    <div class="form-group">
-                        <button type="submit" name="go" id="go" class="btn btn-primary">Go</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+        </form>
+        <br>
         <?php
         if (isset($_POST["go"])) {
             $key = $_POST["key"];
-	        $data = mysqli_query($conn, "SELECT * FROM post WHERE judul LIKE '%$key%'"); ?>  
+            $data = mysqli_query($conn, "SELECT * FROM post WHERE judul LIKE '%$key%'");
+            if (mysqli_num_rows($data) == 0){?>
+                <p class="text-muted">Artikel tidak dtiemukan</p>
+            <?php } ?>  
         <div class="row justify-content-center">
             <?php while ($row = mysqli_fetch_assoc($data)) : ?>
                 <div class="col-auto">
