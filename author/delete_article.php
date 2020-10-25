@@ -15,6 +15,7 @@ if (isset($_POST['delete'])) {
     #assign query
     $query = " DELETE FROM post WHERE idpost=" . $id . " ";
     #execute query
+    mysqli_query($conn, "DELETE FROM komentar WHERE idpost=$id");
     $result = $conn->query($query);
     if (!$result) {
         die("Could not query the database: <br>" . $conn->error);
