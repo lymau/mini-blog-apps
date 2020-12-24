@@ -17,7 +17,12 @@ include 'template/meta.html';
     <?php if (isset($_SESSION['penulis']) or isset($_SESSION['admin'])) { ?>
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
+            <?php    
+            if (isset($_SESSION['penulis'])){?>
                 <a href="author/dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
+            <?php } if(isset($_SESSION['admin'])){?>
+                    <a href="admin/dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
+            <?php } ?>
             </li>
             <li class="nav-item">
                 <a href="logout.php" class="btn btn-danger" style="margin-left: .5em" role="button"><span class="fas fa-sign-in-alt"></span>Logout</a>
