@@ -14,7 +14,7 @@ include_once 'template/meta.html';
 </head>
 <?php include 'template/header.html' ?>
 <!-- Jika sudah login sebagai penulis -->
-<?php if (isset($_SESSION['penulis'])) { ?>
+<?php if (isset($_SESSION['penulis']) or isset($_SESSION['admin'])) { ?>
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item">
             <a href="author/dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>
@@ -44,7 +44,7 @@ include_once 'template/meta.html';
     <h1 class="text-center" style="color: #1c2b2d;">Selamat Datang!</h1>
     <br>
     <p class="text-center" style="color: #1c2b2d;">Anda dapat mencari artikel menarik dari berbagai penulis disini! <br> Selain itu, Anda juga dapat membagikan tulisan Anda kepada orang-orang!</p>
-    <?php if (!isset($_SESSION['penulis'])) { ?>
+    <?php if (!isset($_SESSION['penulis']) and !isset($_SESSION['admin'])) { ?>
         <div class="text-center">
             <p><a class="btn btn-outline-dark" href="login.php" role="button">Login</a></p>
             <p><small>Tidak punya akun? <a href="register.php">Sign Up</a></small></p>

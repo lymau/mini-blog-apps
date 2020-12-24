@@ -14,7 +14,7 @@ include 'template/meta.html';
 </head>
 <?php include 'template/header.html'?>
     <!-- Jika sudah login sebagai penulis -->
-    <?php if (isset($_SESSION['penulis'])) { ?>
+    <?php if (isset($_SESSION['penulis']) or isset($_SESSION['admin'])) { ?>
         <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
                 <a href="author/dashboard.php" class="btn btn-success" role="button"><span class="fas fa-user"></span>Dashboard</a>

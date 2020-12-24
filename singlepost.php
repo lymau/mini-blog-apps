@@ -9,7 +9,7 @@ if (!isset($_GET['idpost'])) {
 
 
 
-if (isset($_SESSION['penulis'])) {
+if (isset($_SESSION['penulis']) or isset($_SESSION['admin'])) {
     // ambil data penulis
     $email = $_SESSION['penulis'];
     $query = "SELECT * FROM penulis WHERE email = '$email'";
