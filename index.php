@@ -73,13 +73,13 @@ include_once 'template/meta.html';
         $aktif = 1;
     }
     $awaldata = ($dataperhalaman * $aktif) - $dataperhalaman;
-    $result = mysqli_query($conn, "SELECT * FROM post LIMIT $awaldata,$dataperhalaman");
+    $result = mysqli_query($conn, "SELECT * FROM post");
     $data = mysqli_num_rows($result);
     $halaman = ceil($data / $dataperhalaman);
-    $post = mysqli_query($conn, "SELECT * FROM mahasiswa LIMIT $awaldata, $dataperhalaman");
+    $post = mysqli_query($conn, "SELECT * FROM post LIMIT $awaldata, $dataperhalaman");
     ?>
     <div class="row justify-content-center">
-        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+        <?php while ($row = mysqli_fetch_assoc($post)) : ?>
             <div class="col-auto">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
@@ -88,7 +88,6 @@ include_once 'template/meta.html';
                         $penulis = mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama FROM penulis WHERE idpenulis=$idpenulis"));
                         $namapenulis = $penulis["nama"] ?>
                         <h6 class="card-subtitle mb-2 text-muted"><small>By <?= $namapenulis ?>, <?= $row["tgl_insert"] ?><br></small></h6>
-                        <p class="card-text"><?php echo_length($row["isipost"], 30); ?>.</p>
                         <small><a href="singlepost.php?idpost=<?= $row["idpost"] ?>">Baca selengkapnya...</a></small>
                     </div>
                 </div>

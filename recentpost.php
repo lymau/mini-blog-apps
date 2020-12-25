@@ -114,9 +114,9 @@ include_once 'template/meta.html';
                     <ul class="pagination justify-content-center">
                         <?php for ($i = 1; $i <= $halaman; $i++) :
                             if ($i == $aktif) : ?>
-                                <li class="page-item active"><a class="page-link" href="?kategori=<?=$kategoriterpilih?>&halaman=<?php echo $i ?>"><?php echo $i; ?></a></li>
+                                <li class="page-item active"><a class="page-link" href="?halaman=<?=$i?>&halaman=<?php echo $i ?>"><?php echo $i; ?></a></li>
                             <?php else : ?>
-                                <li class="page-item"><a class="page-link" href="?kategori=<?=$kategoriterpilih?>&halaman=<?php echo $i ?>"><?php echo $i; ?></a></li>
+                                <li class="page-item"><a class="page-link" href="?halaman=<?=$i?>&halaman=<?php echo $i ?>"><?php echo $i; ?></a></li>
                         <?php endif;
                         endfor; ?>
                     </ul>
